@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual do Empresário | Parceria Laboral SC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: menu lateral fixo (siga em frente) + coluna única de passos; kit de inscrição e assistente no fim. */
+:root{
+  --bg:#f4f6f8; --card:#ffffff; --ink:#14212b; --muted:#566673; --line:#d9e0e6;
+  --navy:#12304a; --navy-ink:#ffffff; --accent:#0b7a5c; --accent-soft:#e3f3ee;
+  --warn:#9a5b00; --warn-soft:#fdf1dc; --bad:#a3271f; --bad-soft:#fbe9e7; --info:#1d5f93; --info-soft:#e5f0f8;
+  --head:"IBM Plex Serif",Georgia,serif; --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f171e; --card:#17222c; --ink:#e8eef3; --muted:#9db0bf; --line:#2c3b48;
+  --navy:#0b1c2b; --navy-ink:#e8eef3; --accent:#4cc9a2; --accent-soft:#12332a; --warn:#f0b865; --warn-soft:#3a2f17;
+  --bad:#ff9a90; --bad-soft:#3a1f1c; --info:#8cc4ec; --info-soft:#17293a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f171e; --card:#17222c; --ink:#e8eef3; --muted:#9db0bf; --line:#2c3b48;
+  --navy:#0b1c2b; --navy-ink:#e8eef3; --accent:#4cc9a2; --accent-soft:#12332a; --warn:#f0b865; --warn-soft:#3a2f17;
+  --bad:#ff9a90; --bad-soft:#3a1f1c; --info:#8cc4ec; --info-soft:#17293a; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.6 var(--body)}
+h1,h2,h3{font-family:var(--head);line-height:1.2;margin:0;text-wrap:balance}
+h2{font-size:1.7rem}h3{font-size:1.15rem}
+p{margin:.5em 0}a{color:var(--info)}
+:focus-visible{outline:3px solid var(--info);outline-offset:2px;border-radius:4px}
+button{font:inherit;cursor:pointer}
+.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1280px;margin:0 auto;gap:0 36px;padding:0 20px}
+nav.side{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;padding:26px 0}
+nav.side .brand{font-family:var(--head);font-weight:700;font-size:1.25rem;line-height:1.15}
+nav.side small{display:block;color:var(--muted);margin:4px 0 16px}
+nav.side .here{font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 6px}
+nav.side ol{list-style:none;margin:0;padding:0;border-left:3px solid var(--line)}
+nav.side a{display:block;padding:7px 12px;margin-left:-3px;border-left:3px solid transparent;color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem}
+nav.side a:hover{background:var(--card)}
+nav.side a.on{border-left-color:var(--accent);background:var(--card);font-weight:700}
+nav.side .pg{margin-top:16px;font-size:.82rem;color:var(--muted)}
+.meter{height:9px;background:var(--line);border-radius:6px;overflow:hidden;margin:6px 0}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.bar{display:none}
+main{min-width:0;padding-bottom:70px}
+.hero{padding:40px 0 10px}
+.hero small.k{color:var(--accent);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.78rem}
+.hero h1{font-size:clamp(2rem,4.6vw,3rem);margin:8px 0 12px}
+.hero p.lead{max-width:62ch;color:var(--muted);font-size:1.08rem}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:11px 20px;border-radius:8px;margin:10px 10px 0 0;border:0}
+.cta.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin:24px 0}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.kpi b{display:block;font-family:var(--head);font-size:1.6rem;color:var(--navy)}
+:root[data-theme="dark"] .kpi b{color:var(--accent)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .kpi b{color:var(--accent)}}
+.kpi span{color:var(--muted);font-size:.9rem}
+.note{border-left:4px solid var(--info);background:var(--info-soft);border-radius:6px;padding:10px 14px;margin:14px 0;font-size:.95rem}
+.note.warn{border-color:var(--warn);background:var(--warn-soft)}.note.bad{border-color:var(--bad);background:var(--bad-soft)}.note.ok{border-color:var(--accent);background:var(--accent-soft)}
+.passo{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;margin-top:22px}
+.ph{display:flex;gap:16px;align-items:flex-start;margin-bottom:10px}
+.ph .n{flex:none;width:44px;height:44px;border-radius:50%;background:var(--navy);color:var(--navy-ink);display:grid;place-items:center;font-family:var(--head);font-weight:700;font-size:1.15rem}
+.ph .n.g{background:var(--accent)}
+.ph p{color:var(--muted);margin:.2em 0 0}
+.when{display:inline-block;background:var(--accent-soft);color:var(--accent);font-weight:600;font-size:.82rem;padding:2px 10px;border-radius:99px;margin-top:6px}
+label.f{display:block;font-weight:600;font-size:.88rem;margin:10px 0 3px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:7px;padding:8px 10px;width:100%}
+textarea{resize:vertical}
+input[type=checkbox],input[type=radio]{width:auto}
+.row{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.row.w2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.facts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:14px}
+.fact{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px}
+.fact b{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.seg{display:inline-flex;border:1.5px solid var(--navy);border-radius:8px;overflow:hidden;flex-wrap:wrap}
+.seg button{background:transparent;color:var(--ink);border:0;padding:8px 14px;font-weight:600}
+.seg button[aria-pressed="true"]{background:var(--navy);color:var(--navy-ink)}
+.btn{display:inline-block;background:var(--navy);color:var(--navy-ink);border:0;border-radius:8px;padding:9px 16px;font-weight:600;margin:10px 8px 0 0;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.go{background:var(--accent);color:#fff}
+.btn.sm{padding:5px 11px;margin:0;font-size:.85rem}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.result{margin-top:14px;padding:12px 16px;border-radius:10px;border:1.5px solid var(--line);font-weight:500}
+.result.good{border-color:var(--accent);background:var(--accent-soft)}.result.warn{border-color:var(--warn);background:var(--warn-soft)}.result.bad{border-color:var(--bad);background:var(--bad-soft)}
+.big{font-family:var(--head);font-size:2.1rem;font-weight:700;line-height:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.scroll{overflow-x:auto}
+.dl{display:grid;gap:8px;margin-top:10px}
+.dl label{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:10px 14px;border:1px solid var(--line);border-radius:9px;cursor:pointer;background:var(--bg)}
+.dl label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.dl input{width:20px;height:20px;margin-top:3px}
+.dl .t{font-weight:600}.dl .o{font-size:.9rem;color:var(--muted)}
+.tag{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:1px 8px;border-radius:99px;margin-left:6px}
+.tag.ob{background:var(--bad-soft);color:var(--bad)}.tag.co{background:var(--warn-soft);color:var(--warn)}.tag.px{background:var(--accent-soft);color:var(--accent)}
+.tl{list-style:none;margin:14px 0 0;padding:0;border-left:3px solid var(--line)}
+.tl li{position:relative;padding:0 0 14px 22px}
+.tl li::before{content:"";position:absolute;left:-8px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--accent);border:3px solid var(--card)}
+.tl b{display:block}.tl span{color:var(--muted);font-size:.93rem}
+details.q{border:1px solid var(--line);border-radius:9px;margin-top:8px;background:var(--bg)}
+details.q summary{padding:11px 14px;font-weight:600;cursor:pointer}
+details.q>div{padding:0 14px 12px}
+.cols{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:12px}
+.box{border-radius:8px;padding:10px 14px;background:var(--bg);border:1px solid var(--line)}
+.box b{display:block;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.box.err{border-color:var(--bad);background:var(--bad-soft)}.box.chk{border-color:var(--warn);background:var(--warn-soft)}
+.box ul{margin:4px 0 0;padding-left:18px}
+.cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:12px}
+.tc{border:1px solid var(--line);border-top:4px solid var(--navy);border-radius:10px;padding:14px;background:var(--bg)}
+.tc dt{font-weight:700;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-top:8px}.tc dd{margin:0}
+.eq{display:grid;gap:8px;grid-template-columns:2fr 1fr 1fr auto;margin-top:8px;align-items:center}
+.eq button{background:transparent;border:1.5px solid var(--line);border-radius:7px;color:var(--bad);padding:7px 10px}
+.search{max-width:420px;margin:10px 0}
+.gl{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.gl div{border:1px solid var(--line);border-radius:8px;padding:10px 14px;background:var(--bg)}.gl b{display:block}
+.empty{display:none;color:var(--muted)}
+.ct{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.ct div{border:1px solid var(--line);border-radius:8px;padding:10px 14px;background:var(--bg)}.ct b{display:block;font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+/* kit */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.tabs button{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:7px 13px;font-weight:600}
+.tabs button[aria-selected="true"]{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+.paper{background:#fff;color:#111;border:1px solid var(--line);border-radius:6px;padding:28px 32px;font:15px/1.7 "Times New Roman",Times,serif;box-shadow:0 1px 6px rgba(0,0,0,.08);white-space:pre-wrap}
+.paper h4{margin:0 0 14px;text-align:center;font:700 16px "Times New Roman",serif}
+.paper mark{background:#fff0a8;color:#5a4300;padding:0 3px;border-radius:3px}
+.paper table{font:14px "Times New Roman",serif;color:#111}.paper th,.paper td{border:1px solid #888;padding:5px 8px}
+.paper .sig{margin-top:34px;text-align:center}
+.frow{display:grid;grid-template-columns:minmax(120px,200px) 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.frow b{font-size:.9rem}.frow span{word-break:break-word}.frow span.miss{color:var(--bad);font-weight:600}
+pre.tex{background:#0e1820;color:#d6e3ee;border-radius:8px;padding:14px;overflow:auto;max-height:340px;font:12.5px/1.5 ui-monospace,Menlo,Consolas,monospace;white-space:pre}
+.st{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.chat{border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:12px;max-height:440px;overflow:auto}
+.msg{padding:9px 13px;border-radius:10px;margin:8px 0;max-width:92%;white-space:pre-wrap}
+.msg.u{background:var(--navy);color:var(--navy-ink);margin-left:auto}.msg.a{background:var(--card);border:1px solid var(--line)}
+.drop{border:2px dashed var(--line);border-radius:10px;padding:18px;text-align:center;background:var(--bg)}
+.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.ai-out{margin-top:12px;white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+footer{margin-top:40px;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr;padding:0 16px}nav.side{display:none}
+  .bar{display:flex;position:sticky;top:0;z-index:10;background:var(--bg);overflow-x:auto;gap:6px;padding:8px 0;border-bottom:1px solid var(--line);margin:0 -16px;padding-left:16px}
+  .bar a{white-space:nowrap;padding:6px 12px;border-radius:99px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.88rem;border:1.5px solid var(--line)}
+  .bar a.on{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+  .passo{padding:18px}.eq{grid-template-columns:1fr 1fr}.ph .n{width:38px;height:38px}.frow{grid-template-columns:1fr}.paper{padding:18px}
+}
+@media print{nav.side,.bar,.btn,.tabs{display:none}.wrap{display:block}}
+
+/* ===== versão 4: aplicativo em páginas, menu lateral escuro ===== */
+body{background:var(--bg)}
+.wrap{display:block;max-width:none;padding:0;margin:0}
+nav.side{position:fixed;left:0;top:0;bottom:0;width:276px;height:auto;margin:0;padding:20px 0 14px;background:var(--navy);color:var(--navy-ink);display:flex;flex-direction:column;z-index:30;overflow:auto;border-right:1px solid rgba(255,255,255,.08)}
+nav.side .brand{font-family:var(--head);font-weight:700;font-size:1.3rem;line-height:1.15;padding:0 22px}
+nav.side small{display:block;color:rgba(255,255,255,.65);margin:4px 22px 14px;padding:0}
+nav.side .live{margin:0 16px 12px;padding:10px 12px;border-radius:10px;background:rgba(111,224,189,.14);border:1px solid rgba(111,224,189,.4);font-size:.84rem;line-height:1.4}
+nav.side .live b{display:block;color:#6fe0bd}
+nav.side .grp{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.55);padding:12px 22px 4px}
+nav.side ol{list-style:none;margin:0;padding:0;border:0}
+nav.side a{display:flex;gap:10px;align-items:center;margin:0;padding:8px 22px;border-left:4px solid transparent;color:rgba(255,255,255,.88);text-decoration:none;font-weight:500;font-size:.95rem}
+nav.side a i{font-style:normal;flex:none;width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.4);display:grid;place-items:center;font-size:.72rem;font-family:var(--head)}
+nav.side a:hover{background:rgba(255,255,255,.08)}
+nav.side a.on{background:rgba(255,255,255,.14);border-left-color:#6fe0bd;color:#fff;font-weight:700}
+nav.side a.on i{background:#6fe0bd;color:#0b2a3d;border-color:#6fe0bd}
+nav.side a.done i{background:rgba(111,224,189,.3);border-color:#6fe0bd}
+nav.side .pg{margin:auto 22px 0;padding-top:14px;font-size:.82rem;color:rgba(255,255,255,.75)}
+nav.side .meter{background:rgba(255,255,255,.2)}nav.side .meter i{background:#6fe0bd}
+main{margin-left:276px;max-width:none;padding:0 44px 60px}
+main>.inner{max-width:900px}
+.page{display:none;padding:32px 0 0;margin:0}
+.page.on{display:block}
+.passo.page,.page.passo{background:transparent;border:0;border-radius:0;padding:32px 0 0}
+.pagehead{border-bottom:2px solid var(--navy);padding-bottom:14px;margin-bottom:20px}
+:root[data-theme="dark"] .pagehead{border-color:var(--accent)}
+.pagehead .crumb{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent)}
+.pagehead h2{font-size:2rem;margin-top:4px}
+.pagehead p{color:var(--muted);margin:6px 0 0;max-width:62ch}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:16px}
+.panel h3{margin-bottom:6px}
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line)}
+.pager a{display:block;text-decoration:none;color:var(--ink);border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:10px 16px;font-weight:600;max-width:48%}
+.pager a small{display:block;color:var(--muted);font-weight:500}
+.pager a.nx{margin-left:auto;text-align:right;background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}
+.pager a.nx small{color:rgba(255,255,255,.7)}
+.status{display:grid;gap:18px;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);align-items:stretch;margin-top:18px}
+.status .open{background:var(--accent-soft);border:2px solid var(--accent);border-radius:14px;padding:22px}
+.status .open .tagp{display:inline-block;background:var(--accent);color:#fff;font-weight:700;font-size:.78rem;padding:2px 12px;border-radius:99px;text-transform:uppercase;letter-spacing:.06em}
+.status .open h3{font-size:1.5rem;margin:10px 0 6px}
+.status .closed{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.days{font-family:var(--head);font-size:3rem;font-weight:700;line-height:1;color:var(--accent)}
+.dl-list{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:12px}
+.dl-list a{display:block;padding:10px 14px;border:1.5px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);text-decoration:none;font-weight:600}
+.dl-list a small{display:block;font-weight:400;color:var(--muted)}
+.dl-list a:hover{border-color:var(--info)}
+.menubtn{display:none;position:fixed;top:10px;left:10px;z-index:40;background:var(--navy);color:var(--navy-ink);border:0;border-radius:8px;padding:9px 14px;font-weight:700}
+.scrim{display:none}
+@media (max-width:900px){
+  nav.side{transform:translateX(-102%);transition:transform .2s;display:flex;box-shadow:0 0 30px rgba(0,0,0,.4)}
+  nav.side.open{transform:none}
+  .scrim.open{display:block;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:25}
+  .menubtn{display:block}
+  main{margin-left:0;padding:0 16px 50px}
+  .page{padding-top:62px}
+  .status{grid-template-columns:1fr}
+  .pager a{max-width:none;flex:1}
+}
+@media print{.menubtn,.pager{display:none}main{margin:0}.page{display:block!important}}
+
+/* ===== versão 7: paleta e tipografia inspiradas no padrão visual do Governo de SC / SEJURI ===== */
+:root{
+  --bg:#f3f3f2; --card:#ffffff; --ink:#231f20; --muted:#5b5758; --line:#dcdad9;
+  --navy:#231f20; --navy-ink:#ffffff;
+  --brand:#ed1c24; --accent:#d3171e; --accent-soft:#fdecec;
+  --ok:#2f7d32; --ok-soft:#eaf5e8; --leaf:#5fb157; --lime:#a1c84d; --hl:#fcee21;
+  --warn:#7a4a00; --warn-soft:#fff6d6; --bad:#b3141b; --bad-soft:#fdecec; --info:#a9141a; --info-soft:#f7f1f0;
+  --head:"Avenir Next","Avenir","Nunito Sans","Segoe UI",system-ui,sans-serif; --body:"Avenir Next","Avenir","Nunito Sans","Segoe UI",system-ui,sans-serif; --mono:"Nunito Sans","Avenir Next",system-ui,sans-serif}
+:root[data-theme="dark"]{--bg:#151213;--card:#1e1a1b;--ink:#f3f1f1;--muted:#aaa4a5;--line:#363031;--navy:#f3f1f1;--navy-ink:#151213;--accent:#ff6a70;--accent-soft:#3a1c1e;--ok:#7fd283;--ok-soft:#1b2f1c;--warn:#f0b865;--warn-soft:#322816;--bad:#ff8a8f;--bad-soft:#3a1c1e;--info:#ff8a8f;--info-soft:#2a1f20}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151213;--card:#1e1a1b;--ink:#f3f1f1;--muted:#aaa4a5;--line:#363031;--navy:#f3f1f1;--navy-ink:#151213;--accent:#ff6a70;--accent-soft:#3a1c1e;--ok:#7fd283;--ok-soft:#1b2f1c;--warn:#f0b865;--warn-soft:#322816;--bad:#ff8a8f;--bad-soft:#3a1c1e;--info:#ff8a8f;--info-soft:#2a1f20}}
+body{font:16px/1.65 var(--body);background:var(--bg);color:var(--ink)}
+h1,h2,h3{font-family:var(--head);font-weight:800;letter-spacing:-.01em}
+h3{font-size:1.1rem}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:3px}
+
+/* barra superior institucional */
+body::before{content:"";position:fixed;left:0;right:0;top:0;height:6px;background:var(--brand);z-index:60}
+
+/* menu lateral */
+nav.side{background:var(--card);color:var(--ink);border-right:1px solid var(--line);padding:6px 0 14px;box-shadow:2px 0 12px rgba(35,31,32,.05)}
+nav.side .brand{font-family:var(--head);font-weight:800;font-size:1.3rem;line-height:1.1;letter-spacing:-.01em;padding:26px 22px 0;text-transform:none;color:var(--ink)}
+nav.side .brand::after{content:"";display:block;width:38px;height:4px;background:var(--brand);margin-top:12px}
+nav.side small{color:var(--muted);margin:10px 22px 16px;padding:0;border:0;font-size:.84rem;line-height:1.4}
+nav.side .live{margin:0 16px 8px;padding:12px 14px;border:0;border-left:5px solid var(--leaf);border-radius:4px;background:var(--ok-soft);color:var(--ink);font-size:.84rem;line-height:1.45}
+nav.side .live b{color:var(--ok);font-family:var(--head);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:7px;margin-bottom:3px}
+nav.side .live b::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--leaf);display:inline-block;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+nav.side .grp{font-family:var(--head);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);padding:18px 22px 6px}
+nav.side a{border:0;border-radius:0;color:var(--ink);padding:8px 22px;font-weight:600;font-size:.93rem;gap:12px;border-left:4px solid transparent}
+nav.side a i{width:auto;height:auto;border:0;border-radius:0;background:none;color:var(--muted);font-family:var(--head);font-size:.74rem;font-weight:700;display:inline;min-width:1.6em}
+nav.side a:hover{background:var(--bg)}
+nav.side a.on{background:var(--accent-soft);color:var(--accent);border-left:4px solid var(--brand);font-weight:800}
+nav.side a.on i{background:none;color:var(--brand);border:0}
+nav.side a.done i{background:none;border:0;color:var(--ok)}
+nav.side a.done i::after{content:" ✓"}
+nav.side .pg{color:var(--muted);font-family:var(--body);font-size:.78rem;margin:auto 22px 0;padding-top:16px;border-top:1px solid var(--line)}
+nav.side .meter,.meter{background:var(--line);height:6px;border-radius:99px}
+nav.side .meter i,.meter i{background:var(--leaf);border-radius:99px}
+
+/* conteúdo */
+main{padding:0 52px 70px}
+main>.inner{max-width:940px}
+.page{padding-top:44px}
+.pagehead{border:0;border-bottom:1px solid var(--line);padding:0 0 20px;margin-bottom:26px}
+.pagehead .crumb{font-family:var(--head);font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--brand);display:flex;gap:10px;align-items:center}
+.pagehead .crumb::before{content:"";width:26px;height:4px;background:var(--brand)}
+.pagehead h2{font-size:clamp(1.8rem,3.6vw,2.5rem);line-height:1.1;margin-top:10px;max-width:26ch;text-transform:none}
+.pagehead p{font-size:1.04rem;max-width:64ch;margin-top:12px;color:var(--muted)}
+.panel,.passo,.kpi,.fact,.box,.tc,.gl div,.ct div,.dl label,details.q,.result,.chat,.ai-out,.drop,.dl-list a,.paper,.note,.pager a,.status,.seg,.tabs button{border-radius:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--ink);padding:22px;margin-top:20px;box-shadow:0 1px 3px rgba(35,31,32,.05)}
+.panel h3{font-size:1.15rem;margin-bottom:8px}
+.note{border:0;border-left:5px solid var(--brand);background:var(--info-soft);padding:12px 16px}
+.note.warn{border-left-color:#e0a800;background:var(--warn-soft)}.note.bad{border-left-color:var(--bad);background:var(--bad-soft)}.note.ok{border-left-color:var(--leaf);background:var(--ok-soft)}
+
+/* aviso do edital */
+.status{gap:0;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);margin-top:22px;border:1px solid var(--line);overflow:hidden;background:var(--card);box-shadow:0 2px 8px rgba(35,31,32,.07)}
+.status .open{background:var(--ok-soft);color:var(--ink);border:0;border-left:8px solid var(--leaf);border-radius:0;padding:26px}
+.status .open h3{font-size:1.55rem;line-height:1.12;margin:12px 0 10px}
+.status .open p{color:var(--ink)}
+.status .open #daysTxt{color:var(--muted)!important}
+.status .open .tagp{background:var(--leaf);color:#102510;border-radius:99px;font-family:var(--head);font-weight:800;font-size:.7rem;padding:4px 12px;letter-spacing:.1em}
+.status .closed{background:var(--card);border:0;border-left:1px solid var(--line);border-radius:0;padding:26px}
+.days{font-family:var(--head);font-weight:800;font-size:3.4rem;letter-spacing:-.03em;color:var(--ok);margin-top:6px}
+
+/* botões */
+.btn,.cta{border-radius:6px;font-family:var(--head);font-weight:800;letter-spacing:.02em;padding:11px 20px;border:2px solid var(--brand);background:var(--brand);color:#fff;transition:background .15s,border-color .15s,color .15s}
+.btn:hover,.cta:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.go{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn.go:hover{background:var(--ink);border-color:var(--ink)}
+.btn.ghost,.cta.alt{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn.ghost:hover{background:var(--bg);color:var(--ink);border-color:var(--ink)}
+.btn.sm{padding:5px 11px;font-size:.8rem;border-width:1.5px}
+.btn[disabled]{opacity:.45}
+:root[data-theme="dark"] .btn,:root[data-theme="dark"] .cta{color:#151213;background:var(--accent);border-color:var(--accent)}
+
+/* formulários */
+label.f{font-family:var(--head);font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:14px 0 4px}
+input,select,textarea{border-radius:6px;background:var(--card);border:1.5px solid var(--line);padding:9px 11px;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:3px solid rgba(237,28,36,.25);outline-offset:0;border-color:var(--brand)}
+input[type=checkbox],input[type=radio]{accent-color:var(--brand)}
+.seg{border:1.5px solid var(--ink);overflow:hidden}
+.seg button{border-radius:0;font-weight:700}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--card)}
+.tabs button{border:1.5px solid var(--line);background:var(--card);font-weight:700;padding:8px 14px}
+.tabs button:hover{border-color:var(--ink)}
+.tabs button[aria-selected="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
+:root[data-theme="dark"] .tabs button[aria-selected="true"]{color:#151213}
+
+/* cartões e indicadores */
+.kpis{gap:12px;border:0}
+.kpi{border:1px solid var(--line);border-top:4px solid var(--brand);padding:16px 18px;background:var(--card)}
+.kpi b{font-family:var(--head);font-size:1.55rem;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.fact,.box,.gl div,.ct div{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--brand)}
+.fact b,.box b,.ct b,th,.tc dt{font-family:var(--head);font-size:.7rem;font-weight:800;letter-spacing:.1em}
+.box.err{border-left-color:var(--bad);background:var(--bad-soft)}.box.chk{border-left-color:#e0a800;background:var(--warn-soft)}
+.tc{border:1px solid var(--line);border-top:5px solid var(--leaf);background:var(--card)}
+.big{font-family:var(--head);font-weight:800;letter-spacing:-.03em}
+.result{border:0;border-left:6px solid var(--line);background:var(--bg)}
+.result.good{border-left-color:var(--leaf);background:var(--ok-soft)}.result.warn{border-left-color:#e0a800;background:var(--warn-soft)}.result.bad{border-left-color:var(--bad);background:var(--bad-soft)}
+
+/* listas, etapas, tabelas */
+.ph .n{border-radius:50%;width:46px;height:46px;background:var(--brand);color:#fff;font-family:var(--head);font-weight:800}
+.ph .n.g{background:var(--leaf);color:#102510}
+.when{border-radius:99px;background:var(--ok-soft);color:var(--ok);font-family:var(--head);font-weight:800;font-size:.74rem;letter-spacing:.03em}
+.tag{border-radius:99px;font-family:var(--head);font-weight:800;letter-spacing:.06em}
+.tag.ob{background:var(--brand);color:#fff}.tag.co{background:var(--hl);color:#231f20}.tag.px{background:var(--ink);color:var(--card)}
+.tl{border-left:2px solid var(--line)}
+.tl li::before{border-radius:50%;width:13px;height:13px;left:-8px;background:var(--brand);border:3px solid var(--card)}
+th{background:var(--ink);color:#fff;padding:10px}
+:root[data-theme="dark"] th{background:#2c2627;color:var(--ink)}
+tr:nth-child(even) td{background:rgba(120,110,112,.06)}
+.dl label{background:var(--card);border:1px solid var(--line)}
+.dl label:has(input:checked){border-color:var(--leaf);background:var(--ok-soft);color:var(--ink)}
+.dl-list a{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--brand)}
+.dl-list a:hover{border-color:var(--brand);background:var(--accent-soft)}
+details.q{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line)}
+details.q summary{font-weight:700}
+details.q[open]{border-left-color:var(--brand)}
+.paper{box-shadow:0 2px 10px rgba(35,31,32,.1);border:1px solid var(--line)}
+.paper mark{border-radius:2px;background:var(--hl);color:#231f20}
+pre.tex{background:#231f20;color:#f1eeee;border-radius:6px;border-left:6px solid var(--brand)}
+.chat{background:var(--bg)}
+.msg{border-radius:10px}
+.msg.u{background:var(--ink);color:var(--card)}.msg.a{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--brand)}
+.drop{border:2px dashed var(--line);background:var(--card)}
+.drop.over{border-color:var(--brand);background:var(--accent-soft)}
+.eq button{border-radius:6px}
+
+/* navegação inferior */
+.pager{border-top:1px solid var(--line);margin-top:36px;padding-top:20px}
+.pager a{border:1.5px solid var(--line);background:var(--card);font-weight:700;padding:12px 18px;transition:border-color .15s}
+.pager a:hover{border-color:var(--ink)}
+.pager a small{font-family:var(--head);font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--muted)}
+.pager a.nx{background:var(--brand);color:#fff;border-color:var(--brand)}
+.pager a.nx:hover{background:var(--ink);border-color:var(--ink)}
+.pager a.nx small{color:rgba(255,255,255,.85)}
+.menubtn{border-radius:6px;background:var(--brand);color:#fff;font-family:var(--head);font-weight:800;letter-spacing:.06em;top:16px}
+footer{border-top:1px solid var(--line);font-size:.8rem}
+@media (max-width:900px){
+  main{padding:0 16px 50px}
+  nav.side{box-shadow:0 0 30px rgba(0,0,0,.35)}
+  .status{grid-template-columns:1fr}.status .closed{border-left:0;border-top:1px solid var(--line)}
+}
+@media print{body::before{display:none}}
+
+/* ===== versão 8: padrão visual do site da SEJURI/SAP (verde institucional, grafite, Arial) ===== */
+:root{
+  --bg:#f1f3f1; --card:#ffffff; --ink:#333333; --muted:#5e625e; --line:#d9dcd9;
+  --brand:#2e6b31; --brand-dk:#1f4d24; --accent:#2e6b31; --accent-soft:#e6f0e6;
+  --ok:#2e6b31; --ok-soft:#e6f0e6; --leaf:#2e6b31; --red:#ed1c24; --hl:#f6e94a;
+  --warn:#7a4a00; --warn-soft:#fff6d6; --bad:#c0262d; --bad-soft:#fdecec; --info:#2e6b31; --info-soft:#eef4ee;
+  --navy:#333333; --navy-ink:#ffffff;
+  --head:Arial,"Helvetica Neue",Helvetica,Arimo,"Liberation Sans",sans-serif; --body:Arial,"Helvetica Neue",Helvetica,Arimo,"Liberation Sans",sans-serif; --mono:Arial,Helvetica,Arimo,sans-serif;
+  --display:"Arial Black",Arial,Helvetica,Arimo,"Liberation Sans",sans-serif}
+:root[data-theme="dark"]{--bg:#121512;--card:#1b1f1b;--ink:#eef0ee;--muted:#a7aea7;--line:#333a33;--brand:#7cc481;--brand-dk:#a6dca9;--accent:#8fd194;--accent-soft:#1f3322;--ok:#8fd194;--ok-soft:#1f3322;--leaf:#7cc481;--bad:#ff8a8f;--bad-soft:#3a1c1e;--info:#8fd194;--info-soft:#1a261b;--navy:#eef0ee;--navy-ink:#121512}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121512;--card:#1b1f1b;--ink:#eef0ee;--muted:#a7aea7;--line:#333a33;--brand:#7cc481;--brand-dk:#a6dca9;--accent:#8fd194;--accent-soft:#1f3322;--ok:#8fd194;--ok-soft:#1f3322;--leaf:#7cc481;--bad:#ff8a8f;--bad-soft:#3a1c1e;--info:#8fd194;--info-soft:#1a261b;--navy:#eef0ee;--navy-ink:#121512}}
+body{font:16px/1.7 var(--body);background:var(--card);color:var(--ink)}
+body::before{background:linear-gradient(90deg,var(--red) 0 84px,var(--brand-dk) 84px);height:6px}
+h1,h2,h3{letter-spacing:0}
+h2{font-family:var(--display);font-weight:900}
+h3{font-family:var(--head);font-weight:700}
+a{color:var(--brand)}
+:root[data-theme="dark"] body::before{background:linear-gradient(90deg,var(--red) 0 84px,var(--brand) 84px)}
+
+nav.side{background:var(--card);border-right:1px solid var(--line);box-shadow:2px 0 10px rgba(0,0,0,.06)}
+nav.side .brand{font-family:var(--display);font-weight:900;font-size:1.2rem;line-height:1.12;text-transform:uppercase;letter-spacing:.01em;color:var(--ink)}
+nav.side .brand::after{width:54px;height:4px;background:linear-gradient(90deg,var(--red) 0 14px,var(--brand) 14px)}
+nav.side small{color:var(--muted)}
+nav.side .live{background:var(--ok-soft);border-left:5px solid var(--brand);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+nav.side .live b{color:var(--brand);font-family:var(--head);font-weight:700}
+nav.side .live b::before{background:var(--brand)}
+nav.side .grp{font-family:var(--head);font-weight:700;color:var(--muted)}
+nav.side a{font-weight:700;font-size:.92rem;text-transform:none}
+nav.side a i{font-family:var(--head);font-weight:700}
+nav.side a:hover{background:var(--bg)}
+nav.side a.on{background:var(--brand);color:#fff;border-left-color:var(--brand-dk);font-weight:700}
+nav.side a.on i,nav.side a.on.done i,nav.side a.on.done i::after{color:#fff}
+:root[data-theme="dark"] nav.side a.on{color:#121512}
+:root[data-theme="dark"] nav.side a.on i{color:#121512}
+nav.side .meter i,.meter i{background:var(--brand)}
+
+main{background:var(--card)}
+.pagehead{border-bottom:1px solid var(--line)}
+.pagehead .crumb{font-family:var(--head);font-weight:700;color:var(--ink);letter-spacing:.12em;font-size:.8rem}
+.pagehead .crumb::before{background:var(--red);width:22px;height:4px}
+.pagehead h2{font-size:clamp(1.7rem,3.4vw,2.35rem);line-height:1.12;text-transform:none;max-width:24ch}
+.pagehead p{color:var(--muted)}
+.panel,.passo,.kpi,.fact,.box,.tc,.gl div,.ct div,.dl label,details.q,.result,.ai-out,.drop,.dl-list a,.note,.pager a,.status,.seg,.tabs button{border-radius:4px}
+.panel{background:var(--card);border:0;border-top:4px solid var(--brand);box-shadow:0 2px 8px rgba(0,0,0,.2);padding:24px}
+.panel h3{font-weight:700}
+.note{border-left-color:var(--brand);background:var(--info-soft)}
+.note.warn{border-left-color:#d4a000;background:var(--warn-soft)}.note.bad{border-left-color:var(--bad);background:var(--bad-soft)}.note.ok{border-left-color:var(--brand);background:var(--ok-soft)}
+
+.status{border:0;box-shadow:0 2px 10px rgba(0,0,0,.22);background:var(--card)}
+.status .open{background:var(--brand);color:#fff;border-left:0;padding:28px}
+.status .open h3{color:#fff;font-family:var(--display);font-weight:900;font-size:1.45rem}
+.status .open p,.status .open a{color:#fff}
+.status .open #daysTxt{color:rgba(255,255,255,.85)!important}
+.status .open .tagp{background:#fff;color:var(--brand);font-family:var(--head);font-weight:700;border-radius:3px;letter-spacing:.1em}
+.days{font-family:var(--display);color:#fff;font-weight:900}
+.status .open .btn.go{background:#fff;color:var(--brand);border-color:#fff}
+.status .open .btn.go:hover{background:var(--brand-dk);color:#fff;border-color:var(--brand-dk)}
+.status .closed{border-left:0;background:var(--card)}
+:root[data-theme="dark"] .status .open{background:#1f3322}
+:root[data-theme="dark"] .status .open .tagp{color:#121512}
+:root[data-theme="dark"] .days,:root[data-theme="dark"] .status .open h3,:root[data-theme="dark"] .status .open p,:root[data-theme="dark"] .status .open a{color:#eef0ee}
+
+.btn,.cta{font-family:var(--head);font-weight:700;letter-spacing:.03em;text-transform:uppercase;font-size:.86rem;border-radius:4px;background:var(--brand);border:2px solid var(--brand);color:#fff;padding:12px 20px}
+.btn:hover,.cta:hover{background:var(--brand-dk);border-color:var(--brand-dk);color:#fff}
+.btn.go{background:var(--brand);border-color:var(--brand)}
+.btn.go:hover{background:var(--brand-dk);border-color:var(--brand-dk)}
+.btn.ghost,.cta.alt{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+.btn.ghost:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn.sm{font-size:.74rem;padding:5px 11px}
+:root[data-theme="dark"] .btn,:root[data-theme="dark"] .cta{color:#121512}
+:root[data-theme="dark"] .btn.ghost{color:var(--brand)}
+
+label.f{font-family:var(--head);font-weight:700;color:var(--ink);letter-spacing:.06em}
+input,select,textarea{border:1.5px solid #b9bdb9;border-radius:4px}
+input:focus,select:focus,textarea:focus{outline:3px solid rgba(46,107,49,.28);border-color:var(--brand)}
+input[type=checkbox],input[type=radio]{accent-color:var(--brand)}
+.seg{border-color:var(--brand)}
+.seg button{font-weight:700}
+.seg button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.tabs button{border:1.5px solid var(--line);font-weight:700;background:var(--card)}
+.tabs button:hover{border-color:var(--brand);color:var(--brand)}
+.tabs button[aria-selected="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+:root[data-theme="dark"] .tabs button[aria-selected="true"],:root[data-theme="dark"] .seg button[aria-pressed="true"]{color:#121512}
+
+.kpi{border:0;border-top:4px solid var(--brand);box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.kpi b{font-family:var(--display);font-weight:900;color:var(--brand)}
+.fact,.box,.gl div,.ct div{border:1px solid var(--line);border-left:4px solid var(--brand);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.fact b,.box b,.ct b,th,.tc dt{font-family:var(--head);font-weight:700}
+.box.err{border-left-color:var(--bad)}.box.chk{border-left-color:#d4a000}
+.tc{border:0;border-top:5px solid var(--brand);box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.big{font-family:var(--display);font-weight:900;color:var(--brand)}
+.result.good{border-left-color:var(--brand);background:var(--ok-soft)}
+.ph .n{background:var(--brand);color:#fff;font-family:var(--display);font-weight:900}
+.ph .n.g{background:var(--brand-dk);color:#fff}
+.when{background:var(--ok-soft);color:var(--brand);font-family:var(--head);font-weight:700}
+.tag{font-family:var(--head);font-weight:700}
+.tag.ob{background:var(--bad);color:#fff}.tag.co{background:var(--hl);color:#333}.tag.px{background:var(--brand);color:#fff}
+.tl li::before{background:var(--brand)}
+th{background:var(--brand);color:#fff}
+:root[data-theme="dark"] th{background:#26382a;color:#eef0ee}
+.dl label:has(input:checked){border-color:var(--brand);background:var(--ok-soft)}
+.dl-list a{border-left-color:var(--brand);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.dl-list a:hover{background:var(--ok-soft);border-color:var(--brand)}
+details.q[open]{border-left-color:var(--brand)}
+pre.tex{border-left-color:var(--brand);background:#222}
+.msg.u{background:var(--brand);color:#fff}.msg.a{border-left-color:var(--brand)}
+:root[data-theme="dark"] .msg.u{color:#121512}
+.drop.over{border-color:var(--brand);background:var(--ok-soft)}
+.paper{box-shadow:0 2px 10px rgba(0,0,0,.2)}
+
+.pager a{border:1.5px solid var(--line);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.pager a:hover{border-color:var(--brand)}
+.pager a.nx{background:var(--brand);border-color:var(--brand);color:#fff}
+.pager a.nx:hover{background:var(--brand-dk);border-color:var(--brand-dk)}
+.menubtn{background:var(--brand);font-family:var(--head)}
+/* rodapé cinza-claro, como no site */
+footer{background:#e6e6e6;color:#333;margin:40px -52px -70px;padding:26px 52px;border-top:0;font-size:.82rem}
+:root[data-theme="dark"] footer{background:#1b1f1b;color:var(--muted)}
+@media (max-width:900px){footer{margin:30px -16px -50px;padding:22px 16px}.status .closed{border-top:1px solid var(--line)}}
+
+/* ===== versão 9: organização simplificada ===== */
+main>.inner{max-width:820px}
+.page{padding-top:36px}
+.pagehead{margin-bottom:22px;padding-bottom:16px}
+.pagehead h2{font-size:clamp(1.55rem,3vw,2rem);max-width:none}
+.pagehead p{font-size:1rem;margin-top:8px}
+.page>*+*{margin-top:16px}
+.page>.pagehead+*{margin-top:0}
+h3.sub{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:30px 0 10px}
+.panel{box-shadow:0 1px 5px rgba(0,0,0,.14);padding:20px;margin-top:16px}
+.status{box-shadow:0 1px 6px rgba(0,0,0,.16)}
+.steps4{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:0}
+.steps4 .box{display:block;text-decoration:none;color:var(--ink);padding:14px 14px 14px 16px;transition:border-color .15s,background .15s}
+.steps4 .box:hover{border-color:var(--brand);background:var(--ok-soft)}
+.steps4 .box b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;font-size:.85rem;letter-spacing:0;margin-bottom:8px}
+:root[data-theme="dark"] .steps4 .box b{color:#121512}
+.steps4 .box span{display:block;color:var(--muted);font-size:.84rem;font-weight:400;margin-top:2px}
+.steps4 .box{font-weight:700;font-size:.98rem}
+
+/* seções recolhidas */
+details.fold{background:var(--card);border:1px solid var(--line);border-radius:4px;margin-top:12px}
+details.fold>summary{list-style:none;cursor:pointer;padding:14px 18px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:12px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--brand);font-weight:400}
+details.fold[open]>summary{border-bottom:1px solid var(--line)}
+details.fold[open]>summary::after{content:"–"}
+details.fold>summary:hover{background:var(--bg)}
+details.fold>.fb{padding:6px 18px 18px}
+details.fold .panel{box-shadow:none;border:1px solid var(--line);border-top:3px solid var(--brand);margin-top:14px}
+details.fold .hint{color:var(--muted);font-size:.9rem}
+.note{font-size:.93rem;padding:10px 14px}
+.dl label{padding:9px 14px}
+.cols{margin-top:0}
+footer{font-size:.78rem}
+nav.side a{padding:9px 22px}
+nav.side{height:100vh;bottom:auto}
+.steps4 .box b{display:grid;font-family:var(--head)}
+.steps4 .box{display:flex;flex-direction:column;align-items:flex-start}
+#edFacts .fact:nth-child(2),#edFacts .fact:nth-child(4),#edFacts .fact:nth-child(6){display:none}
+
+/* ===== conta ===== */
+nav.side .acc{margin:auto 16px 0;padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--bg);font-size:.84rem}
+nav.side .acc .who b{display:block;font-size:.9rem}
+nav.side .acc .who span{display:block;color:var(--muted);overflow:hidden;text-overflow:ellipsis;font-size:.78rem}
+nav.side .acc .st{color:var(--muted);font-size:.78rem;margin:6px 0 8px}
+nav.side .acc .ac{display:flex;gap:6px}
+nav.side .acc .btn{margin:0}
+nav.side .pg{margin-top:12px}
+.modal{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.5);display:grid;place-items:center;padding:16px;overflow:auto}
+.modal[hidden]{display:none}
+body.modal-open{overflow:hidden}
+.mbox{position:relative;background:var(--card);color:var(--ink);width:100%;max-width:440px;border-radius:6px;border-top:5px solid var(--brand);padding:24px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.mbox h3{font-size:1.25rem;margin-right:30px}
+.mbox .mx{position:absolute;right:10px;top:8px;background:none;border:0;font-size:1.8rem;line-height:1;color:var(--muted);cursor:pointer}
+.mbox .tabs{margin:14px 0 4px}
+.mbox .fine{font-size:.78rem;color:var(--muted);margin:14px 0 0;line-height:1.5}
+.mbox .result{margin-top:12px}
+.mbox .result:empty{display:none}
+#accSubmit{margin-top:14px;width:100%}
+</style>
+</head>
+<body>
+<button class="menubtn" id="menuBtn" aria-controls="side" aria-expanded="false">Menu</button>
+<div class="scrim" id="scrim"></div>
+<div class="wrap">
+<nav class="side" id="side" aria-label="Páginas do guia">
+  <div class="brand">Manual do Empresário</div>
+  <small>Parceria laboral em unidades prisionais de SC</small>
+  <div class="live"><b>Edital em aberto</b>Chamamento 002/2026<br>Propostas até 18/12/2026</div>
+  <div id="menu"></div>
+  <div class="acc" id="accBox"></div>
+  <div class="pg"><span id="pTxt">0%</span> dos documentos reunidos<div class="meter"><i id="pBar"></i></div></div>
+</nav>
+
+<main><div class="inner">
+
+<section class="page on" id="p-inicio">
+  <div class="pagehead"><div class="crumb">Início</div><h2>Inscrição em edital de parceria laboral</h2><p>Os dados da empresa são informados uma única vez. O guia gera as respostas do formulário e as declarações.</p></div>
+  <div class="status">
+    <div class="open">
+      <span class="tagp">Recebendo propostas</span>
+      <h3>Chamamento Público nº 002/SEJURI/GEFUN/2026</h3>
+      <p>Parceria laboral interna: 10 galpões públicos e maquinário do Projeto SAP Têxtil, nas regiões Serrana e Oeste.</p>
+      <p><b>Propostas:</b> 19/11/2026 a 18/12/2026, por formulário eletrônico.</p>
+      <div class="days" id="daysLeft">–</div><div id="daysTxt"></div>
+      <a class="btn go" href="#dados">Iniciar</a>
+    </div>
+    <div class="closed">
+      <h3>Trabalho externo</h3>
+      <p>Sem edital em aberto. O Chamamento nº 001/2026 foi encerrado em 22/10/2026.</p>
+      <p style="color:var(--muted);font-size:.9rem"><a href="https://www.sejuri.sc.gov.br/chamamento-publico/" target="_blank" rel="noopener">Novos chamamentos na página da SEJURI</a></p>
+    </div>
+  </div>
+  <h3 class="sub">Como funciona</h3>
+  <div class="cols steps4">
+    <a class="box" href="#edital"><b>1</b>Edital<span>Prazos e arquivos</span></a>
+    <a class="box" href="#dados"><b>2</b>Dados da empresa<span>Preenchimento único</span></a>
+    <a class="box" href="#docs"><b>3</b>Documentos<span>Lista e visita técnica</span></a>
+    <a class="box" href="#kit"><b>4</b>Inscrição<span>Kit pronto e formulário</span></a>
+    <a class="box" href="#enviar"><b>5</b>Após o envio<span>Prazos e assinatura</span></a>
+  </div>
+  <div class="note ok"><b>Verificado em 19/11/2026</b> na página da SEJURI. Material de apoio elaborado por estudantes da UFSC (Projeto Integrado I) para a CTRAB/SC, sem valor oficial. Prevalece o texto do edital.</div>
+</section>
+
+<section class="page" id="p-edital">
+  <div class="pagehead"><div class="crumb">Passo 1</div><h2>Edital 002/2026</h2><p>Dados confirmados na página oficial da SEJURI.</p></div>
+  <div class="facts" id="edFacts"></div>
+  <div class="panel">
+    <a class="btn go" id="edForm" href="https://forms.gle/BYRJNw5ao6Md2rgg6" target="_blank" rel="noopener" style="margin-top:0">Formulário de inscrição</a>
+    <a class="btn ghost" href="https://www.sejuri.sc.gov.br/chamamento-publico-no-002-sejuri-gefun-2026/" target="_blank" rel="noopener" style="margin-top:0">Página oficial do chamamento</a>
+  </div>
+  <div class="panel"><h3>Arquivos do edital</h3><div class="dl-list" id="edFiles"></div></div>
+  <div class="note warn">Unidades, número de vagas, vigência e pontuação constam apenas no PDF do edital. O arquivo pode ser enviado na página <a href="#ajuda">Ajuda</a> para extração.</div>
+  <details class="fold"><summary>Particularidades deste edital</summary><div class="fb"><ul><li>O espaço corresponde a galpões públicos já existentes, e não a área a edificar.</li><li>O maquinário público do Projeto SAP Têxtil é cedido por concessão onerosa, em Termo próprio.</li><li>Participam os Fundos Rotativos das regiões Serrana e Oeste.</li></ul></div></details>
+</section>
+
+<section class="page" id="p-dados">
+  <div class="pagehead"><div class="crumb">Passo 2</div><h2>Dados da empresa</h2><p>Preenchimento único. Os dados permanecem apenas neste navegador.</p></div>
+  <div class="note" id="accNote"></div>
+  <div class="panel"><h3>Empresa proponente</h3><div class="row w2" id="fEmp"></div></div>
+  <div class="panel"><h3>Representante legal</h3><div class="row w2" id="fRep"></div></div>
+  <div class="panel"><h3>Proposta</h3><div class="row w2" id="fProp"></div>
+    <label style="display:flex;gap:8px;align-items:center;margin-top:14px"><input type="checkbox" id="fAprendiz"> A empresa emprega aprendiz (menor a partir de 14 anos, na condição de aprendiz)</label>
+  </div>
+  <button class="btn ghost" id="cClear">Limpar dados</button><span id="cFill" style="margin-left:6px;color:var(--muted)"></span>
+</section>
+
+<section class="page" id="p-docs">
+  <div class="pagehead"><div class="crumb">Passo 3</div><h2>Documentos</h2><p>Marcar os documentos já reunidos. As certidões devem estar válidas na data do envio.</p></div>
+  <div class="note bad"><b>Causas de eliminação em 2025:</b> ausência da declaração de visita, zoneamento não comprovado, vagas abaixo do mínimo e atividade incompatível com a unidade.</div>
+  <div id="docs"></div>
+  <div class="panel">
+    <h3>Visita técnica</h3>
+    <p>A Declaração de Visita in loco integra os documentos. Agendar com 3 dias úteis de antecedência (regra de 2025), pelo telefone (48) 3664-5806, de segunda a sexta, das 12h às 19h.</p>
+    <a class="btn ghost" href="https://sejuri.sc.gov.br/download/declaracao-de-visita-in-loco/" target="_blank" rel="noopener" style="margin-top:0">Declaração de Visita in loco</a>
+  </div>
+  <details class="fold"><summary>Calculadora de energia e água (opcional)</summary><div class="fb"><p class="hint">Referência dos editais de 2025. Os resultados alimentam o quadro de máquinas do kit.</p><div class="panel">
+  <h3>Energia (kVA por posto)</h3>
+  <p>Carga instalada: soma de (kW ÷ fator de potência). Demanda: carga instalada × fator de demanda. kVA por posto: demanda ÷ número de vagas.</p>
+  <div class="row">
+    <div><label class="f" for="kPostos">Vagas (postos)</label><input id="kPostos" type="number" min="1" value="25"></div>
+    <div><label class="f" for="kFP">Fator de potência</label><input id="kFP" type="number" step="0.01" min="0.1" max="1" value="0.85"></div>
+    <div><label class="f" for="kFD">Fator de demanda</label><input id="kFD" type="number" step="0.05" min="0.1" max="1" value="1"></div>
+  </div>
+  <div id="eqList"></div>
+  <button class="btn ghost" id="addEq">Adicionar máquina</button>
+  <div class="result" id="kOut" aria-live="polite"></div>
+  <p style="color:var(--muted);font-size:.88rem">Os fatores iniciais são exemplificativos e devem ser substituídos pelos definidos pelo engenheiro eletricista. A potência de cada máquina consta de sua plaqueta.</p>
+  </div>
+  <div class="panel">
+  <h3>Água (limite de 70 L por dia por preso nos editais de 2025)</h3>
+  <div class="row">
+    <div><label class="f" for="aPostos">Vagas (postos)</label><input id="aPostos" type="number" min="1" value="25"></div>
+    <div><label class="f" for="aPess">Uso por preso (L/dia)</label><input id="aPess" type="number" min="0" value="50"></div>
+    <div><label class="f" for="aProc">Água do processo (L/dia)</label><input id="aProc" type="number" min="0" value="0"></div>
+  </div>
+  <div class="result" id="aOut" aria-live="polite"></div>
+  </div>
+  </div></details>
+  <details class="fold"><summary>Demais itens técnicos</summary><div class="fb"><div class="cards" id="cards"></div></div></details>
+</section>
+
+<section class="page" id="p-kit">
+  <div class="pagehead"><div class="crumb">Passo 4</div><h2>Inscrição</h2><p>Respostas do formulário e declarações preenchidas com os dados da empresa.</p></div>
+  <div class="tabs" role="tablist" id="kTabs"></div>
+  <div id="kBody"></div>
+  <div class="panel"><h3>Envio</h3><p>Com os documentos assinados, enviar a proposta pelo formulário eletrônico até 18/12/2026.</p><a class="btn go" href="https://forms.gle/BYRJNw5ao6Md2rgg6" target="_blank" rel="noopener" style="margin-top:0">Formulário de inscrição</a></div>
+</section>
+
+<section class="page" id="p-enviar">
+  <div class="pagehead"><div class="crumb">Passo 5</div><h2>Após o envio</h2><p>O processo é acompanhado no SGP-e Externo, com o CPF do representante.</p></div>
+  <div class="panel"><h3>Etapas</h3><ol class="tl">
+      <li><b>Avaliação</b><span>Até 10 dias úteis. Diligência: 5 dias para correção de documentos sanáveis, a ser respondida no prazo.</span></li>
+      <li><b>Resultado preliminar</b><span>2 dias úteis</span></li>
+      <li><b>Recurso</b><span>5 dias úteis, por e-mail para chamamentopublico@sejuri.sc.gov.br. Contrarrazões: 5 dias úteis.</span></li>
+      <li><b>Resultado definitivo e homologação</b><span>2 dias úteis cada, após 5 dias úteis de análise dos recursos.</span></li>
+      <li><b>Assinatura</b><span>Até 10 dias úteis da convocação. O e-mail informado no PPTC deve ser o do certificado digital. O instrumento somente produz efeitos após a publicação no Diário Oficial, em até 20 dias.</span></li>
+    </ol>
+  <div class="note warn">Prazos de referência (Edital 039/2025). Conferir a tabela do edital 002/2026.</div></div>
+  <details class="fold"><summary>Calculadora de prazos</summary><div class="fb"><div class="panel">
+    <h3>Calculadora de prazos</h3>
+    <p>As datas do edital 002/2026 já estão preenchidas. Os prazos de impugnação, esclarecimento e visita são os dos editais de 2025.</p>
+    <div class="row">
+      <div><label class="f" for="dPub">Data de publicação do edital</label><input id="dPub" type="date" value="2026-11-18"></div>
+      <div><label class="f" for="dFim">Último dia para enviar a proposta</label><input id="dFim" type="date" value="2026-12-18"></div>
+    </div>
+    <div class="result" id="dOut" aria-live="polite"></div>
+  </div>
+  </div></details>
+  <details class="fold"><summary>Simulador de pontuação</summary><div class="fb"><div class="panel">
+    <h3>Simulador de pontuação (modelo do Edital 039/2025)</h3>
+    <p>O Edital 039/2025 somava 150 pontos. Para vagas e egressos, informar os pontos previstos na tabela de pontuação do edital. Se o edital 002/2026 adotar critérios distintos, estes devem prevalecer.</p>
+    <div class="row">
+      <div><label class="f" for="sV">Pontos por vagas (0 a 75)</label><input id="sV" type="number" min="0" max="75" value="0"></div>
+      <div><label class="f" for="sK">kVA por posto</label><input id="sK" type="number" step="0.01" min="0" value="0.6"></div>
+      <div><label class="f" for="sS">Selos Resgata (4 pontos cada)</label><select id="sS"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
+      <div><label class="f" for="sE">Pontos por egressos (0 a 10)</label><input id="sE" type="number" min="0" max="10" value="0"></div>
+    </div>
+    <label style="display:flex;gap:8px;align-items:center;margin-top:12px"><input type="checkbox" id="sD"> A empresa possui DANC (20 pontos)</label>
+    <div class="result" id="sOut" aria-live="polite"></div><div class="meter" aria-hidden="true"><i id="sBar"></i></div>
+    <p style="color:var(--muted);font-size:.9rem">Faixas de energia por posto no Edital 039/2025: até 0,3 kVA, 25 pontos; até 0,6, 20; até 0,9, 15; até 1,2, 11; até 1,5, 6; acima de 1,5, 1 ponto.</p>
+  </div>
+</div></details>
+  <details class="fold"><summary>Assinatura e operação</summary><div class="fb"><div id="after"></div></div></details>
+</section>
+
+<section class="page" id="p-ajuda">
+  <div class="pagehead"><div class="crumb">Apoio</div><h2>Ajuda</h2><p>Perguntas frequentes e ferramenta de consulta ao edital.</p></div>
+  <div class="panel"><h3>Perguntas frequentes</h3>
+  <input class="search" id="faqQ" type="search" placeholder="Buscar nas perguntas" aria-label="Buscar nas perguntas">
+  <div id="faqBox"></div><p class="empty" id="faqEmpty">Nenhuma pergunta localizada. Dúvidas podem ser encaminhadas a secretaria@sejuri.sc.gov.br.</p></div>
+  
+  <details class="fold"><summary>Assistente: enviar o PDF do edital e consultar</summary><div class="fb"><div class="note warn" id="aiOff" style="display:none">O assistente está disponível apenas no ambiente de publicação do guia. As demais páginas funcionam normalmente fora dele.</div>
+  <div id="aiBox">
+    <div class="panel"><h3>1. Envio do edital</h3>
+      <p>Obter o <a href="https://sejuri.sc.gov.br/download/edital-7/" target="_blank" rel="noopener">edital 002/2026</a> e enviá-lo nesta página (PDF com texto selecionável ou arquivo .txt).</p>
+      <div class="drop" id="drop"><p style="margin:0 0 8px">Arrastar o arquivo para esta área ou selecioná-lo</p><input type="file" id="upl" accept=".pdf,.txt,.md,application/pdf,text/plain" aria-label="Enviar edital"></div>
+      <p id="upStat" style="color:var(--muted)"></p>
+      <div id="upActions" style="display:none"><button class="btn" id="bSum">Resumir o edital</button><button class="btn" id="bDiff">Conferir o guia com o edital</button></div>
+      <div class="ai-out" id="aiOut" style="display:none" aria-live="polite"></div>
+    </div>
+    <div class="panel"><h3>2. Consulta ao guia</h3>
+      <div class="chat" id="chat" aria-live="polite"><div class="msg a">Consultas sobre prazos, documentos, pontuação e regras. Se o edital tiver sido enviado, o texto dele será utilizado nas respostas.</div></div>
+      <div class="row w2" style="grid-template-columns:1fr auto;align-items:end"><div><label class="f" for="chatQ">Pergunta</label><input id="chatQ" placeholder="Exemplo: qual é o prazo para recurso?"></div><button class="btn" id="chatGo" style="margin:0">Consultar</button></div>
+    </div>
+    <div class="panel"><h3>3. Solicitação de correção ou atualização</h3>
+      <label class="f" for="fixTxt">Informação incorreta ou desatualizada</label>
+      <textarea id="fixTxt" rows="3" placeholder="Exemplo: o prazo de diligência no edital 002/2026 é de 3 dias úteis."></textarea>
+      <button class="btn" id="fixGo">Gerar mensagem ao responsável pelo guia</button>
+      <div class="ai-out" id="fixOut" style="display:none"></div>
+      <button class="btn ghost" id="fixCopy" style="display:none">Copiar mensagem</button>
+    </div>
+  </div>
+</div></details>
+  <details class="fold"><summary>Glossário</summary><div class="fb"><input class="search" id="glQ" type="search" placeholder="Buscar um termo ou sigla" aria-label="Buscar no glossário">
+  <div class="gl" id="glBox"></div><p class="empty" id="glEmpty">Termo não localizado.</p></div></details>
+  <details class="fold"><summary>Pontos a confirmar com a SEJURI</summary><div class="fb"><p>Trechos dos editais de 2025 que apresentam contradição ou lacuna. Recomenda-se esclarecer por escrito junto à SEJURI antes de adotá-los como base de planejamento.</p>
+  <ul id="confList"></ul></div></details>
+  <details class="fold"><summary>Contatos</summary><div class="fb"><div class="ct" id="contatos"></div></div></details>
+  <footer>
+    <p>Fundamentos: editais de chamamento público de parceria laboral de 2025 e Edital Externo 001/2026, com termos de referência; página do Chamamento 002/SEJURI/GEFUN/2026 (consulta em 19/11/2026); Lei Complementar 809/2022; Lei de Execução Penal (Lei 7.210/1984). Links de apoio, a verificar antes do uso:
+    <a href="https://sejuri.sc.gov.br/download/02_anexo-ii-pptc/" target="_blank" rel="noopener">modelo do PPTC</a>,
+    <a href="https://sinfatweb.ima.sc.gov.br/" target="_blank" rel="noopener">SinFATWeb</a>,
+    <a href="https://celesc.com.br/arquivos/normas-tecnicas/padrao-entrada/norma-N3210002.pdf" target="_blank" rel="noopener">Celesc N-321.0002</a>,
+    <a href="https://www.confea.org.br/index.php/servicos-prestados/anotacao-de-responsabilidade-tecnica-art" target="_blank" rel="noopener">Confea (ART)</a>.</p>
+    <p>Grupo 6, Projeto Integrado I (EPS2306), Engenharia de Produção Civil, UFSC. Protótipo de novembro de 2026, sujeito a designação de responsável e a revisão a cada novo chamamento.</p>
+  </footer>
+
+</section>
+
+<div class="modal" id="accModal" hidden role="dialog" aria-modal="true" aria-labelledby="accTitle">
+  <div class="mbox">
+    <button class="mx" id="accClose" aria-label="Fechar">×</button>
+    <h3 id="accTitle">Entrar</h3>
+    <div class="tabs" role="tablist"><button id="tabIn" role="tab" aria-selected="true" type="button">Entrar</button><button id="tabUp" role="tab" aria-selected="false" type="button">Criar conta</button></div>
+    <form id="accForm" novalidate>
+      <div id="accNameW"><label class="f" for="accName">Nome</label><input id="accName" autocomplete="name"></div>
+      <label class="f" for="accMail">E-mail</label><input id="accMail" type="email" autocomplete="username">
+      <label class="f" for="accPw">Senha</label><input id="accPw" type="password" autocomplete="current-password">
+      <div id="accPw2W"><label class="f" for="accPw2">Confirmar a senha</label><input id="accPw2" type="password" autocomplete="new-password"></div>
+      <div id="accImpW"><label class="f" for="accImp">Conta de outro dispositivo (arquivo de backup)</label><input id="accImp" type="file" accept=".txt,.json,text/plain"></div>
+      <div class="result" id="accMsg" aria-live="polite"></div>
+      <button class="btn" id="accSubmit" type="submit">Entrar</button>
+    </form>
+    <p class="fine">Os dados da conta são criptografados com a senha. Não há recuperação de senha: em caso de esquecimento, o preenchimento não poderá ser recuperado. O botão Backup, no menu lateral, gera um arquivo para acessar a conta em outro dispositivo. Em computador compartilhado, utilizar Sair ao final.</p>
+  </div>
+</div>
+<div class="pager" id="pager"></div>
+</div></main>
+</div>
+<script>
+var STEPS_I=[
+{t:"Publicação do edital e esclarecimentos",w:"Antes da elaboração da proposta",
+ what:"O edital define vagas, espaço, critérios de pontuação e documentos exigidos. Recomenda-se a leitura integral do edital e dos anexos antes de qualquer decisão sobre a proposta.",
+ who:"A SEJURI publica o edital. Esclarecimentos são dirigidos à unidade responsável indicada no edital.",
+ time:"Nos editais de 2025: impugnação em até 5 dias úteis da publicação; pedido de esclarecimento até 7 dias úteis antes do encerramento; resposta em 3 dias úteis.",
+ err:["Formular consulta por telefone sem registro escrito da resposta.","Apresentar o pedido de esclarecimento próximo ao encerramento do prazo."],
+ chk:["O espaço é a edificar ou já edificado.","Quantidade mínima e máxima de vagas.","Existência de restrição quanto a maquinário."],
+ ref:"Tabela de prazos do edital", next:"Agendar a visita técnica."},
+{t:"Visita técnica",w:"Agendamento prévio",
+ what:"Visita ao local em que o posto de trabalho será instalado. Dela resulta a declaração de visita, documento exigido.",
+ who:"Unidade prisional.",
+ time:"Nos editais de 2025: agendamento com antecedência mínima de 3 dias úteis.",
+ err:["A proposta sem declaração de visita era eliminada nos editais de 2025.","Envio de representante sem poderes para assinar a declaração."],
+ chk:["Levar croqui preliminar.","Registrar medidas e pontos de energia e água.","Obter a declaração assinada no ato da visita."],
+ ref:"Item de visita técnica", next:"Elaborar a proposta."},
+{t:"Proposta e documentos",w:"Prazo fixado no edital",
+ what:"A proposta é enviada por formulário eletrônico, com a documentação de habilitação e o Plano de Trabalho e Capacitação (PPTC).",
+ who:"A empresa proponente, por meio de representante legal ou procurador.",
+ time:"Nos editais de 2025: 30 dias corridos. Edital 002/2026: de 19/11/2026 a 18/12/2026.",
+ err:["Ausência da declaração de visita.","Atividade incompatível com a segurança da unidade.","Zoneamento do imóvel não comprovado.","Consumo de energia ou água acima dos limites do edital."],
+ chk:["PPTC com quadro de máquinas, potência, consumo de água e resíduos.","Documentos pessoais e de habilitação jurídica.","Regularidade fiscal e trabalhista.","QIS dos sócios e representantes.","Declarações exigidas."],
+ ref:"Itens de proposta e de pontuação", next:"Acompanhar a avaliação."},
+{t:"Avaliação e diligência",w:"Nos editais de 2025: até 10 dias úteis",
+ what:"A comissão confere a documentação e apura a pontuação. Pode solicitar correção de documentos sanáveis.",
+ who:"Comissão de seleção da SEJURI.",
+ time:"Nos editais de 2025: avaliação em até 10 dias úteis; diligência de 5 dias; resultado preliminar em 2 dias úteis.",
+ err:["Não responder à diligência no prazo.","Deixar de monitorar o e-mail cadastrado."],
+ chk:["Certidões vigentes na data de envio.","QIS completo.","Verificação em cadastros de restrição a cargo da comissão."],
+ ref:"Habilitação e declarações", next:"Se necessário, interpor recurso."},
+{t:"Resultado, recurso e homologação",w:"Nos editais de 2025: cerca de duas semanas úteis",
+ what:"Após o resultado preliminar, a empresa pode interpor recurso. Seguem o resultado definitivo e a homologação.",
+ who:"Recursos por e-mail indicado no edital. Acompanhamento pelo SGP-e Externo, com o CPF do representante.",
+ time:"Nos editais de 2025: recurso em 5 dias úteis; contrarrazões em 5; análise em 5; resultado definitivo em 2; homologação em 2.",
+ err:["Encaminhar o recurso a endereço eletrônico diverso do indicado.","Não acompanhar o andamento no SGP-e."],
+ chk:["Critérios de desempate.","Sorteio por videoconferência, se aplicável."],
+ ref:"Tabela de prazos e item de recursos", next:"Preparar a assinatura."},
+{t:"Assinatura e publicação no Diário Oficial",w:"Convocação e publicação",
+ what:"Assinatura do Termo de Parceria Laboral. O instrumento produz efeitos somente após a publicação no Diário Oficial do Estado.",
+ who:"SEJURI e empresa, por assinatura digital.",
+ time:"Nos editais de 2025: assinatura em até 10 dias úteis da convocação; publicação em até 20 dias; vigência de 60 meses, prorrogável por igual período.",
+ err:["Divergência entre o e-mail do PPTC e o do certificado digital.","Início de obra ou de atividade antes da publicação."],
+ chk:["Certificado digital do representante vigente.","E-mail cadastrado no PPTC conferido."],
+ ref:"Itens de assinatura e vigência", next:"Iniciar a adequação do espaço, quando exigida."},
+{t:"Projeto e obra",w:"Quando houver edificação ou adaptação",
+ what:"Em áreas a edificar, os editais de 2025 previam diretrizes, projetos executivos, análise, ajustes e execução da obra. Em áreas já edificadas, o procedimento é mais simples. Confirmar no edital 002/2026 se há obra ou adaptação.",
+ who:"A GETED analisa os projetos. O responsável técnico da empresa assina com ART ou RRT.",
+ time:"Nos editais de 2025: diretrizes em até 20 dias; projetos em 30 dias, prorrogáveis por mais 30; análise em 10 dias úteis; ajustes em até 6 meses; início da obra em até 30 dias; conclusão em 360 dias.",
+ err:["Apresentar projeto sem ART ou RRT.","Declarar energia e água diversas das efetivamente necessárias.","Desconsiderar que as benfeitorias revertem ao Estado sem indenização."],
+ chk:["Circuitos elétricos exclusivos e ART do projeto elétrico.","Hidrômetro próprio e efluentes independentes."],
+ ref:"Item de projetos e obras", next:"Reunir os documentos finais."},
+{t:"Documentos finais",w:"Nos editais de 2025: até 120 dias após a obra",
+ what:"Conjunto de documentos que comprova a regularidade do espaço para funcionamento.",
+ who:"Prefeitura, Corpo de Bombeiros, vigilância sanitária e IMA.",
+ time:"Nos editais de 2025: até 120 dias após a conclusão da obra.",
+ err:["Solicitar o alvará antes do Habite-se.","Deixar o licenciamento ou a DANC para o final."],
+ chk:["Habite-se.","Alvará de funcionamento e inscrição municipal.","Habite-se e atestado do Corpo de Bombeiros.","Habite-se sanitário.","Licenciamento ambiental ou DANC.","Controles ambientais."],
+ ref:"Item de documentos finais", next:"Iniciar a operação."},
+{t:"Operação",w:"Obrigações mensais",
+ what:"A empresa remunera os presos, mantém a rotina de trabalho e apresenta os relatórios exigidos.",
+ who:"Preposto e supervisor da empresa; gestor da parceria na unidade.",
+ time:"Nos editais de 2025: pagamento até o 5º dia útil, em valor não inferior a um salário mínimo por preso; paralisação após 5 dias de inadimplência; PGRS com ART em 60 dias da assinatura; PGR em 3 meses; relatório ambiental semestral.",
+ err:["Atraso no pagamento.","Adoção de banco de horas ou remuneração variável inferior ao mínimo, vedados.","Redução de vagas em desacordo com as regras (máximo de 25%, após 6 meses, uma vez a cada 2 anos).","Consumo de água ou energia acima do declarado por 4 meses em 12."],
+ chk:["Jornada de 6 a 8 horas; de 3 a 6 horas, computa-se meio dia; abaixo de 3 horas, não se computa.","Fornecimento de uniforme padrão a cada 6 meses.","Folga remunerada.","Contratação de egressos, obrigatória a partir de 50 vagas.","Rescisão voluntária mediante aviso de 90 dias."],
+ ref:"Termo de Referência e minuta do Termo de Parceria", next:"Fim do percurso."}
+];
+
+var CARDS=[
+{t:"1. Demanda de energia (kVA)",
+ q:"Potência elétrica necessária por posto de trabalho.",
+ how:"Relacionar cada máquina com a potência da plaqueta. Carga instalada: soma de kW dividido pelo fator de potência. Demanda: carga instalada multiplicada pelo fator de demanda. kVA por posto: demanda dividida pelo número de vagas.",
+ lim:"Nos editais de 2025, acima de 1,5 kVA por posto a proposta era tratada como de alta demanda e submetida à CPAAL. Menor demanda rendia maior pontuação.",
+ who:"Responsável técnico (engenheiro eletricista).",
+ err:"Utilizar kW sem conversão para kVA e subdimensionar a demanda. Exceder a demanda declarada por 4 meses em 12 podia gerar rescisão ou sanção.",
+ link:["Celesc N-321.0002","https://celesc.com.br/arquivos/normas-tecnicas/padrao-entrada/norma-N3210002.pdf"]},
+{t:"2. Consumo de água",
+ q:"Volume diário de água por preso.",
+ how:"Consumo diário (L) = vagas × uso por pessoa + água do processo. Comparar com vagas × 70 L por dia.",
+ lim:"Nos editais de 2025, o limite era de 70 L por dia por preso; acima disso a proposta era eliminada.",
+ who:"Responsável técnico (hidráulica).",
+ err:"Desconsiderar a água de lavagem de máquinas. Exigem-se hidrômetro próprio e efluentes independentes.",
+ link:["USP: água fria","https://edisciplinas.usp.br/pluginfile.php/4535385/mod_resource/content/6/Agua%20Fria%202-%202019%20SQ%20.pdf"]},
+{t:"3. Croqui",
+ q:"Desenho esquemático da operação no espaço.",
+ how:"Indicar fluxos, armazenamento, acessos, entrada e saída de insumos, pontos de água com o total em m³ e descarte de resíduos.",
+ lim:"Integra a análise de compatibilidade da atividade com a segurança da unidade.",
+ who:"Empresa, com apoio do responsável técnico.",
+ err:"Croqui sem escala ou sem a indicação dos pontos de água e de energia.",link:null},
+{t:"4. Projetos executivos (GETED)",
+ q:"Projetos completos analisados pela GETED antes da obra.",
+ how:"Enviar a geted@sejuri.sc.gov.br no prazo de 30 dias (prorrogável por mais 30) contado da diretriz, nos editais de 2025.",
+ lim:"Análise em 10 dias úteis; ajustes em até 6 meses; início da obra em até 30 dias do protocolo.",
+ who:"Arquiteto ou engenheiro com ART ou RRT.",
+ err:"Perder o prazo de 30 dias sem solicitar prorrogação.",link:null},
+{t:"5. ART e RRT",
+ q:"Documentos que vinculam um responsável técnico ao projeto e à obra.",
+ how:"A ART é emitida no CREA, para engenheiros. A RRT é emitida no CAU, para arquitetos. Emite-se uma por projeto ou serviço.",
+ lim:"Exigidas nos projetos elétrico e hidráulico e no PGRS.",
+ who:"Profissional habilitado.",
+ err:"Emissão com atividade diversa da efetivamente executada.",
+ link:["Confea: ART","https://www.confea.org.br/index.php/servicos-prestados/anotacao-de-responsabilidade-tecnica-art"]},
+{t:"6. Habite-se e documentos finais",
+ q:"Comprovação de que o espaço pode funcionar regularmente.",
+ how:"Habite-se municipal; alvará e inscrição municipal; Habite-se e atestado do Corpo de Bombeiros; Habite-se sanitário; licenciamento ou DANC; controles ambientais.",
+ lim:"Nos editais de 2025: até 120 dias após o fim da obra.",
+ who:"Prefeitura, Corpo de Bombeiros, vigilância sanitária e IMA.",
+ err:"Cada município tem fluxo próprio. Recomenda-se iniciar pelo Habite-se municipal.",link:null},
+{t:"7. DANC",
+ q:"Declaração de dispensa de licenciamento ambiental para atividades não sujeitas a licença no IMA.",
+ how:"Solicitação no SinFATWeb do IMA. Nos editais de 2025, a DANC rendia pontuação adicional.",
+ lim:"A validade atual da DANC não foi confirmada: material antigo do IMA cita 1 ano (Resolução CONSEMA 98/2017) e o IMA atualmente cita a Resolução CONSEMA 250/2024. Confirmar junto ao IMA.",
+ who:"IMA.",
+ err:"Considerar válida uma DANC antiga sem verificar sua vigência.",
+ link:["SinFATWeb (IMA)","https://sinfatweb.ima.sc.gov.br/"]}
+];
+
+var FAQ=[
+["Quem pode participar?","Empresas com CNPJ ativo e regularidade jurídica, fiscal e trabalhista. Cada sócio e representante legal preenche o QIS. A existência de restrição em cadastros oficiais pode impedir a participação."],
+["É possível apresentar proposta para mais de uma unidade?","Cada edital tem item e formulário próprios. Para participar de mais de um, deve-se enviar uma proposta por edital."],
+["Qual é o tempo entre o edital e o início da produção?","Depende do edital. Nos editais de 2025 com área a edificar, as fases de projeto e obra podiam levar até cerca de um ano e meio. Em espaço já edificado, o prazo é menor. Confirmar no edital 002/2026."],
+["Qual é a remuneração mínima dos presos?","Nos editais de 2025, não inferior a um salário mínimo por preso, paga até o 5º dia útil. A distribuição do valor era de 25% para o Fundo Rotativo e 75% para o pecúlio, havendo divergência no texto do edital (ver Pontos a confirmar)."],
+["Qual é a jornada de trabalho?","Nos editais de 2025, entre 6 e 8 horas diárias. Jornadas de 3 a 6 horas computam meio dia; abaixo de 3 horas, não se computa. Banco de horas e remuneração variável inferior ao mínimo são vedados."],
+["O que é o QIS?","Questionário de Identificação Social, preenchido por cada sócio e representante legal. Nos editais de 2025, tinha 8 páginas e exigia fotografia 5x7 e dados familiares. O setor competente emite parecer. Não se deve contatar o setor informalmente."],
+["O que ocorre se um documento estiver incorreto?","Se o vício for sanável, a comissão concede prazo de 5 dias, em diligência, nos editais de 2025. Se não for, a proposta pode ser desclassificada."],
+["Quem custeia energia e água?","Nos editais de 2025, a energia consumida era subsidiada pela unidade dentro da demanda declarada; a empresa instalava a rede e circuitos exclusivos. A água exigia hidrômetro próprio, com limite de 70 L por dia por preso."],
+["É possível reduzir o número de vagas?","Nos editais de 2025, sim: no máximo 25%, após 6 meses de contrato e uma vez a cada 2 anos."],
+["Como se encerra a parceria?","Nos editais de 2025, por rescisão voluntária com aviso de 90 dias (regime interno) ou 30 dias (regime externo). As penalidades possíveis no regime interno eram advertência, suspensão de até 2 anos e declaração de inidoneidade."],
+["Presos que realizam ENEM ou ENCCEJA sofrem desconto?","Nos editais de 2025, não há desconto para presos que realizam o ENEM ou o ENCCEJA PPL."],
+["Como proceder em caso de acidente de trabalho?","Aplica-se o Protocolo de Acidente de Trabalho (PAT), que define a remuneração do acidentado. O PGR constitui a base de prevenção."],
+["Onde acompanhar o processo?","No SGP-e Externo, com o CPF do representante da empresa."]
+];
+
+var GL=[
+["ART","Anotação de Responsabilidade Técnica. Registro no CREA que vincula o projeto a um engenheiro."],
+["RRT","Registro de Responsabilidade Técnica. Equivalente da ART no CAU, para arquitetos."],
+["CBMSC","Corpo de Bombeiros Militar de Santa Catarina."],
+["CEIS","Cadastro Nacional de Empresas Inidôneas e Suspensas."],
+["CEPAE","Centro de Apoio ao Egresso. Realiza a intermediação de egressos."],
+["CPAAL","Comissão que delibera sobre casos de alta demanda e outras situações de análise em parcerias laborais."],
+["CTRAB","Coordenadoria de Trabalho e Renda."],
+["DANC","Declaração de Atividade Não Constante: dispensa de licenciamento ambiental."],
+["Diligência","Solicitação da comissão para que a empresa corrija ou complemente documento."],
+["DOE","Diário Oficial do Estado. A parceria somente produz efeitos após a publicação."],
+["DPP","Diretoria de Políticas Penais."],
+["Egresso","Pessoa que deixou o sistema prisional, nos termos do art. 26 da Lei de Execução Penal."],
+["Fundo Rotativo","Fundo estadual que recebe parte do pagamento dos presos (Lei Complementar 809/2022)."],
+["GEFUN","Gerência de Fundos."],
+["GETED","Gerência de Engenharia e Edificações."],
+["Habite-se","Documento da prefeitura que autoriza o uso da edificação."],
+["Impugnação","Contestação do edital apresentada dentro do prazo."],
+["kVA","Quilovolt-ampere: unidade de potência aparente utilizada para a demanda de energia."],
+["LEP","Lei de Execução Penal (Lei 7.210/1984)."],
+["PAT","Protocolo de Acidente de Trabalho."],
+["Pecúlio","Reserva do preso, formada por parte da remuneração."],
+["PGR","Programa de Gerenciamento de Riscos (NR-01 e NR-18)."],
+["PGRS","Plano de Gerenciamento de Resíduos Sólidos."],
+["PPTC","Proposta de Plano de Trabalho e Capacitação."],
+["QIS","Questionário de Identificação Social."],
+["Remição","Redução de um dia de pena a cada três dias de trabalho."],
+["Selo Resgata","Selo da SENAPPEN conferido a empresas que empregam pessoas presas ou egressas."],
+["SGP-e","Sistema de Gestão de Processos Eletrônicos do Estado de Santa Catarina."],
+["SST","Saúde e Segurança do Trabalho."],
+["Termo de Parceria Laboral","Instrumento firmado entre o Estado e a empresa que autoriza o trabalho prisional."]
+];
+
+var CONF=[
+["Prazo do PGR","Nos editais de 2025, o termo de referência e a minuta indicam 3 meses; o anexo do PAT indica 6 meses."],
+["Destino do pagamento","O termo de referência prevê pagamento integral ao Fundo Rotativo; a minuta prevê 25% ao Fundo e 75% ao pecúlio."],
+["Prazo da GETED para diretrizes","A tabela de prazos indica 20 dias; o item 7.2.1 indica 20 dias úteis; a minuta refere-se a prazo posterior à assinatura e à publicação."],
+["Erros de redação no Edital 039/2025","A declaração de visita é citada como anexo XIX; os itens 4.8.6.4.1 e 4.8.6.8.1 não existem; os itens 4.7.6.4 e 4.7.6.5 estão duplicados; o título cita os anexos IV, V e IV."],
+["PGRS e egressos em 60 dias da assinatura","Em áreas a edificar, a obra pode levar até 360 dias, o que torna o prazo de 60 dias inexequível. Confirmar o termo inicial da contagem."],
+["Edital Externo 001/2026","O número de vagas aparece como 615, 625 ou 935, e a vigência como 60 meses improrrogáveis ou 12 meses prorrogáveis, conforme o documento."],
+["Validade da DANC","O IMA cita a Resolução CONSEMA 250/2024. A validade atual não foi confirmada."],
+["Etapas sem prazo definido","Não há prazo para o parecer do setor de informação sobre o QIS, para o parecer técnico, para o credenciamento da equipe civil nem para a liberação do início das atividades."]
+];
+
+
+
+var ED=[{id:"002/2026",un:"Fundos Rotativos das regiões Serrana e Oeste",reg:"Interno",esp:"10 galpões públicos e maquinário do Projeto SAP Têxtil",vag:"conferir no edital",vig:"conferir no edital",tel:"(48) 3664-5806",jan:"19/11/2026 a 18/12/2026",pts:"conferir no edital",nota:"",forms:"https://forms.gle/BYRJNw5ao6Md2rgg6"}];
+var EDFILES=[["Edital","https://sejuri.sc.gov.br/download/edital-7/","PDF, 4 MB"],["Proposta de Plano de Trabalho e Capacitação (PPTC)","https://sejuri.sc.gov.br/download/proposta-de-plano-de-trabalho-e-capacitacao/",""],["QIS","https://sejuri.sc.gov.br/download/qis-2/","Questionário de identificação social"],["Declarações","https://sejuri.sc.gov.br/download/declaracoes-2/","Modelos de declaração"],["Declaração de consulta ao município","https://sejuri.sc.gov.br/download/declaracao-de-consulta-ao-municipio-4/",""],["Declaração de visita in loco","https://sejuri.sc.gov.br/download/declaracao-de-visita-in-loco/",""],["Termo de referência","https://sejuri.sc.gov.br/download/termo-de-referencia/",""],["Termo de concessão de uso","https://sejuri.sc.gov.br/download/termo-de-concessao-de-uso/","Maquinário do Projeto SAP Têxtil"],["Termo de parceria laboral","https://sejuri.sc.gov.br/download/termo-de-parceria-laboral/","Minuta do contrato"]];
+FAQ.unshift(["Quais editais estão em aberto?","Em 19/11/2026, apenas o Chamamento Público 002/SEJURI/GEFUN/2026 (parceria interna, regiões Serrana e Oeste), com recebimento de propostas de 19/11 a 18/12/2026. Não há edital de trabalho externo em aberto: o 001/2026 encerrou em 22/10/2026. A situação deve ser confirmada na página de chamamento público da SEJURI."]);
+FAQ.push(["Há necessidade de construir?","Neste edital, o espaço corresponde a galpões públicos já existentes, com concessão do maquinário do Projeto SAP Têxtil. Confirmar no edital se há exigência de obra ou adaptação."]);
+CONF.unshift(["Regras de referência","Enquanto o PDF do edital 002/2026 não for conferido no guia (envio na página Assistente), prazos, pontuação e documentos seguem os editais internos de 2025."]);
+CONTATOS=[["Secretaria da SEJURI","(48) 3664-5806 · secretaria@sejuri.sc.gov.br · seg a sex, 12h às 19h"],["Ouvidoria","0800 644 8500"],["Endereço","Rua Fúlvio Aducci, 1214, Loja 06, Estreito, Florianópolis, SC, CEP 88075-000"],["Recursos (editais de 2025)","chamamentopublico@sejuri.sc.gov.br"],["Dúvidas sobre o edital (editais de 2025)","gefun@sejuri.sc.gov.br"],["Projetos e obras (editais de 2025)","geted@sejuri.sc.gov.br"]];
+var DOCS=[
+["ob","Declaração de visita in loco","Fornecida pela unidade durante a visita (página Visita técnica). Modelo disponível no edital."],
+["ob","PPTC com o quadro de máquinas preenchido","Modelo disponível no site da SEJURI. O quadro de máquinas é gerado no kit.","kit"],
+["ob","CPF e RG do representante legal","Documentos pessoais do sócio ou do procurador."],
+["ob","Habilitação jurídica","Contrato social e alterações, ou ato constitutivo, registrados na Junta Comercial."],
+["ob","Cartão CNPJ ativo","Site da Receita Federal."],
+["ob","Certidão negativa federal (CND)","Receita Federal e PGFN, com emissão on-line."],
+["ob","Certidão negativa estadual","Secretaria de Estado da Fazenda de SC, com emissão on-line."],
+["ob","Certidão negativa municipal","Prefeitura da sede da empresa."],
+["ob","CRF do FGTS","Site da Caixa Econômica Federal, com emissão on-line."],
+["ob","CNDT, certidão de débitos trabalhistas","Site do Tribunal Superior do Trabalho, com emissão on-line."],
+["ob","Certidão negativa de falência e recuperação judicial","Tribunal de Justiça do estado da sede da empresa."],
+["ob","QIS de cada sócio e representante","Modelo disponível no edital. Nos editais de 2025: 8 páginas, fotografia 5x7 e dados familiares. Recomenda-se iniciar o preenchimento com antecedência."],
+["ob","Declaração de saúde e segurança no trabalho","Gerada no kit.","kit"],
+["ob","Declaração sobre menor","Gerada no kit.","kit"],
+["ob","Declaração sobre trabalho escravo, infantil e exploração de menores","Gerada no kit.","kit"],
+["ob","Declaração de consulta ao município (zoneamento)","Solicitar a consulta à prefeitura e, em seguida, gerar a declaração no kit.","kit"],
+["ob","Declaração de pleno conhecimento e condições locais","Relacionada no edital 002/2026. O modelo não estava disponível para download na página: solicitar à SEJURI ou localizar no PDF do edital."],
+["ob","Croqui da operação","Indicar fluxos, armazenamento, acessos, entrada e saída de insumos, pontos de água e descarte de resíduos."],
+["co","Procuração","Necessária apenas se o signatário não for sócio com poderes de representação."],
+["co","ART ou RRT do responsável técnico","Emitida no CREA (engenheiro) ou no CAU (arquiteto), quando houver projeto elétrico, hidráulico ou PGRS."],
+["co","PGRS e PGR","Plano de resíduos (com ART) e programa de gerenciamento de riscos (NR-01 e NR-18), exigidos após a assinatura nos editais de 2025."],
+["px","Selo Resgata","Emitido pela SENAPPEN. Conferia pontuação nos editais de 2025."],
+["px","DANC","Solicitação no SinFATWeb do IMA. Conferia pontuação nos editais de 2025."],
+["px","Contratação de egressos","Realizada por meio do CEPAE. Conferia pontuação nos editais de 2025."]
+];
+var TAG={ob:["Obrigatório","ob"],co:["Condicional","co"],px:["Pontuação adicional","px"]};
+
+/* ---------- utilitários ---------- */
+function $(id){return document.getElementById(id)}
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;")}
+function load(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}if(typeof ACC!=="undefined"&&ACC.dirty)ACC.dirty()}
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function copyText(t,btn){
+  var ok=function(){if(btn){var o=btn.textContent;btn.textContent="Copiado";setTimeout(function(){btn.textContent=o},1400)}};
+  var fb=function(){var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");ok()}catch(e){if(btn)btn.textContent="Selecionar e copiar manualmente"}document.body.removeChild(ta)};
+  try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}
+}
+var DL=null;
+async function saveFile(name,data,btn){
+  if(!DL){copyText(data,btn);return}
+  try{await DL.save({filename:name,data:data})}catch(e){if(e&&e.code!=="declined"){copyText(data,btn)}}
+}
+
+/* ---------- páginas e menu lateral ---------- */
+var PAGES=[["inicio","Início","","•"],["edital","Edital 002/2026","Passo a passo","1"],["dados","Dados da empresa","Passo a passo","2"],["docs","Documentos","Passo a passo","3"],["kit","Inscrição","Passo a passo","4"],["enviar","Após o envio","Passo a passo","5"],["ajuda","Ajuda","Apoio","?"]];
+var visited={};
+(function(){
+  var menu=$("menu"),last="";
+  PAGES.forEach(function(p,i){
+    if(p[2]&&p[2]!==last){menu.appendChild(el("div","grp",esc(p[2])));last=p[2]}
+    var a=el("a",null,"<i>"+p[3]+"</i><span>"+esc(p[1])+"</span>");a.href="#"+p[0];a.dataset.id=p[0];menu.appendChild(a);
+  });
+})();
+function setMenu(open){$("side").classList.toggle("open",open);$("scrim").classList.toggle("open",open);$("menuBtn").setAttribute("aria-expanded",open)}
+$("menuBtn").onclick=function(){setMenu(!$("side").classList.contains("open"))};$("scrim").onclick=function(){setMenu(false)};
+function route(){
+  var id=(location.hash||"").replace("#","");var idx=PAGES.findIndex(function(p){return p[0]===id});if(idx<0){idx=0;id=PAGES[0][0]}
+  PAGES.forEach(function(p){var e=$("p-"+p[0]);if(e)e.classList.toggle("on",p[0]===id)});
+  visited[id]=true;window.CURPAGE=id;if(typeof ACC!=='undefined'&&ACC.dirty)ACC.dirty();
+  document.querySelectorAll("#menu a").forEach(function(a){a.classList.toggle("on",a.dataset.id===id);a.classList.toggle("done",!!visited[a.dataset.id]&&a.dataset.id!==id)});
+  var pg=$("pager");pg.innerHTML="";
+  if(idx>0){var a=el("a",null,"<small>Anterior</small>"+esc(PAGES[idx-1][1]));a.href="#"+PAGES[idx-1][0];pg.appendChild(a)}
+  if(idx<PAGES.length-1){var b=el("a","nx","<small>Próxima página</small>"+esc(PAGES[idx+1][1]));b.href="#"+PAGES[idx+1][0];pg.appendChild(b)}
+  setMenu(false);window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);
+
+/* ---------- edital aberto ---------- */
+function curEd(){return ED[0]}
+function updateDays(){
+  var now=new Date(),st=new Date("2026-11-19T00:00:00-03:00"),en=new Date("2026-12-18T23:59:59-03:00"),dd=86400000;
+  var n,tx;
+  if(now<st){n=Math.ceil((st-now)/dd);tx="dias para a abertura do recebimento de propostas"}
+  else if(now<=en){n=Math.ceil((en-now)/dd);tx=n===1?"dia para o encerramento (último dia para envio)":"dias para o encerramento do recebimento de propostas"}
+  else{n=0;tx="Prazo encerrado. Consultar a página da SEJURI para novos chamamentos."}
+  $("daysLeft").textContent=n;$("daysTxt").textContent=tx;
+}
+function showEd(){
+  var e=curEd();
+  var f=[["Número","Chamamento Público 002/SEJURI/GEFUN/2026"],["Processo","SEJURI 128410/2026"],["Tipo","Parceria laboral interna"],["Parceiros","SEJURI e Fundos Rotativos das regiões Serrana e Oeste"],["Objeto","Permissão de uso de 10 galpões públicos e concessão onerosa do maquinário do Projeto SAP Têxtil"],["Base legal","Arts. 16 e 17 da LC 809/2022"],["Propostas","19/11/2026 a 18/12/2026"],["Envio","Somente pelo formulário eletrônico"],["Contato","(48) 3664-5806 · secretaria@sejuri.sc.gov.br"]];
+  $("edFacts").innerHTML=f.map(function(x){return'<div class="fact"><b>'+x[0]+'</b>'+esc(x[1])+'</div>'}).join("");
+  var L=$("edFiles");L.innerHTML="";
+  EDFILES.forEach(function(x){var a=el("a",null,esc(x[0])+(x[2]?"<small>"+esc(x[2])+"</small>":""));a.href=x[1];a.target="_blank";a.rel="noopener";L.appendChild(a)});
+  updateDays();renderKit();
+}
+
+/* ---------- passo 2: dados da empresa ---------- */
+var FIELDS=[
+["fEmp","razao","Razão social"],["fEmp","cnpj","CNPJ","00.000.000/0000-00"],["fEmp","email","E-mail da empresa (o mesmo do certificado digital)","","email"],["fEmp","tel","Telefone"],
+["fEmp","rua","Rua"],["fEmp","num","Número"],["fEmp","bairro","Bairro"],["fEmp","cidade","Cidade (SC)"],
+["fRep","repNome","Nome do representante legal"],["fRep","repNac","Nacionalidade","brasileiro(a)"],["fRep","repEC","Estado civil"],["fRep","repProf","Profissão"],
+["fRep","repRG","RG (número)"],["fRep","repOrg","Órgão expedidor do RG","SSP/SC"],["fRep","repCPF","CPF","000.000.000-00"],
+["fRep","repRua","Rua (residência)"],["fRep","repNum","Número (residência)"],["fRep","repBairro","Bairro (residência)"],["fRep","repCidade","Cidade (residência, SC)"],
+["fProp","item","Item do edital pretendido","Ex.: item 1"],["fProp","vagas","Número de vagas pretendido","25","number"],["fProp","atividade","Atividade a ser desenvolvida"],
+["fProp","residuos","Resíduos gerados e destino"],["fProp","rtNome","Responsável técnico (nome)"],["fProp","rtReg","Responsável técnico (CREA ou CAU)"]
+];
+var C=load("gde-c",{});
+function prefill(){var n=0;FIELDS.forEach(function(f){if(C[f[1]])n++});$("cFill").textContent=n+" de "+FIELDS.length+" campos preenchidos"}
+FIELDS.forEach(function(f){
+  var d=el("div");d.innerHTML='<label class="f" for="f_'+f[1]+'">'+esc(f[2])+'</label><input id="f_'+f[1]+'" type="'+(f[4]||"text")+'" placeholder="'+esc(f[3]||"")+'" value="'+esc(C[f[1]]||"")+'" autocomplete="off">';
+  $(f[0]).appendChild(d);
+  d.querySelector("input").oninput=function(){C[f[1]]=this.value;save("gde-c",C);prefill();renderKit();if(f[1]==="vagas"){$("kPostos").value=this.value||25;$("aPostos").value=this.value||25;calcK();calcA()}};
+});
+$("fAprendiz").checked=!!C.aprendiz;
+$("fAprendiz").onchange=function(){C.aprendiz=this.checked;save("gde-c",C);renderKit()};
+$("cClear").onclick=function(){C={};save("gde-c",C);FIELDS.forEach(function(f){$("f_"+f[1]).value=""});$("fAprendiz").checked=false;prefill();renderKit()};
+prefill();
+
+/* ---------- passo 3: documentos ---------- */
+var ck=load("gde-docs",{});
+function renderDocs(){
+  var box=$("docs");box.innerHTML="";var done=0;
+  [["ob","Documentos obrigatórios"],["co","Documentos condicionais"],["px","Itens que conferem pontuação adicional"]].forEach(function(g){
+    var h=el("h3",null,g[1]);h.style.marginTop="18px";box.appendChild(h);
+    var w=el("div","dl");
+    DOCS.forEach(function(d,i){
+      if(d[0]!==g[0])return;if(ck[i])done++;
+      var l=el("label");l.innerHTML='<input type="checkbox" id="d'+i+'"'+(ck[i]?" checked":"")+'><div><div class="t">'+esc(d[1])+'<span class="tag '+d[0]+'">'+TAG[d[0]][0]+'</span>'+(d[3]?'<span class="tag px">Gerado no kit</span>':'')+'</div><div class="o">'+esc(d[2])+'</div></div>';
+      l.querySelector("input").onchange=function(){ck[i]=this.checked;save("gde-docs",ck);renderDocs();renderKit()};
+      w.appendChild(l);
+    });box.appendChild(w);
+  });
+  var p=Math.round(done/DOCS.length*100);$("pTxt").textContent=p+"%";$("pBar").style.width=p+"%";
+}
+
+/* ---------- passo 5: energia e água ---------- */
+var eqs=load("gde-eq",[{n:"Máquina de costura industrial",kw:0.55,q:20},{n:"Iluminação e tomadas",kw:2,q:1}]);
+function faixa(k){return k<=0.3?25:k<=0.6?20:k<=0.9?15:k<=1.2?11:k<=1.5?6:1}
+var CALC={s:0,d:0,kp:0,cd:0};
+function renderEq(){
+  var box=$("eqList");box.innerHTML="";
+  box.appendChild(el("div","eq","<b>Máquina</b><b>kW</b><b>Quantidade</b><span></span>"));
+  eqs.forEach(function(e,i){
+    var r=el("div","eq");
+    r.innerHTML='<input aria-label="Nome da máquina" id="en'+i+'" value="'+esc(e.n)+'"><input aria-label="kW" id="ek'+i+'" type="number" step="0.01" min="0" value="'+e.kw+'"><input aria-label="Quantidade" id="eq'+i+'" type="number" min="1" value="'+e.q+'"><button id="er'+i+'">Remover</button>';
+    box.appendChild(r);
+    $("en"+i).oninput=function(){e.n=this.value;calcK()};
+    $("ek"+i).oninput=function(){e.kw=+this.value;calcK()};
+    $("eq"+i).oninput=function(){e.q=+this.value;calcK()};
+    $("er"+i).onclick=function(){eqs.splice(i,1);renderEq();calcK()};
+  });
+}
+function f2(x){return x.toFixed(2).replace(".",",")}
+function calcK(){
+  var fp=+$("kFP").value||0.85,fd=+$("kFD").value||1,p=+$("kPostos").value||1,s=0;
+  eqs.forEach(function(e){s+=(e.kw*e.q)/fp});
+  var d=s*fd,kp=d/p,pts=faixa(kp),o=$("kOut");
+  CALC.s=s;CALC.d=d;CALC.kp=kp;
+  o.className="result "+(kp>1.5?"bad":kp>0.9?"warn":"good");
+  o.innerHTML='Carga instalada: <b>'+f2(s)+' kVA</b> · Demanda: <b>'+f2(d)+' kVA</b><br><span class="big">'+f2(kp)+'</span> kVA por posto, <b>'+pts+' pontos</b>'+(kp>1.5?'<br>Acima de 1,5 kVA por posto, a proposta é considerada de alta demanda e submetida à deliberação da CPAAL (regra dos editais de 2025).':'');
+  save("gde-eq",eqs);$("sK").value=kp.toFixed(2);calcS();renderKit();
+}
+$("addEq").onclick=function(){eqs.push({n:"Nova máquina",kw:1,q:1});renderEq();calcK()};
+["kPostos","kFP","kFD"].forEach(function(id){$(id).oninput=calcK});
+function calcA(){
+  var p=+$("aPostos").value||0,pr=+$("aProc").value||0,pe=+$("aPess").value||0,cd=p*pe+pr,lim=p*70,o=$("aOut"),ok=cd<=lim;
+  CALC.cd=cd;
+  o.className="result "+(ok?(cd>lim*0.85?"warn":"good"):"bad");
+  o.innerHTML='Consumo: <b>'+cd.toLocaleString("pt-BR")+' L/dia</b> · Limite: <b>'+lim.toLocaleString("pt-BR")+' L/dia</b> ('+p+' × 70)<br>'+(ok?(cd>lim*0.85?'Dentro do limite, com margem reduzida.':'Dentro do limite.'):'Acima do limite: nos editais de 2025, a proposta seria eliminada. Reduzir o consumo do processo ou o número de vagas.')+'<br><small>Em m³/dia: '+(cd/1000).toLocaleString("pt-BR",{maximumFractionDigits:2})+'</small>';
+  renderKit();
+}
+["aPostos","aProc","aPess"].forEach(function(id){$(id).oninput=calcA});
+CARDS.forEach(function(c){
+  if(/Demanda de energia|Consumo de água/.test(c.t))return;
+  var h='<h3>'+esc(c.t.replace(/^\d+\.\s*/,""))+'</h3><p>'+esc(c.q)+'</p><dl><dt>Como fazer</dt><dd>'+esc(c.how)+'</dd><dt>Limite ou prazo</dt><dd>'+esc(c.lim)+'</dd><dt>Quem faz</dt><dd>'+esc(c.who)+'</dd><dt>Erro comum</dt><dd>'+esc(c.err)+'</dd></dl>';
+  if(c.link)h+='<p><a href="'+c.link[1]+'" target="_blank" rel="noopener">'+esc(c.link[0])+'</a></p>';
+  $("cards").appendChild(el("div","tc",h));
+});
+
+/* ---------- passo 6: kit de inscrição ---------- */
+var MESES=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+var LAB={};FIELDS.forEach(function(f){LAB[f[1]]=f[2]});
+function today(){var d=new Date();return d.getDate()+" de "+MESES[d.getMonth()]+" de "+d.getFullYear()}
+function edNum(){var e=curEd();return e?e.id.replace(/^Externo\s*/,""):""}
+function tx(s){return String(s).replace(/\\/g,"\\textbackslash{}").replace(/([&%$#_{}])/g,"\\$1").replace(/~/g,"\\textasciitilde{}").replace(/\^/g,"\\textasciicircum{}")}
+function val(k,mode){
+  var v=k==="edital"?edNum():k==="data"?today():C[k];
+  if(v)return mode==="html"?esc(v):mode==="tex"?tx(v):v;
+  var lab=LAB[k]||k;return mode==="html"?'<mark>'+esc(lab)+'</mark>':mode==="tex"?"\\underline{\\hspace{3cm}}":"__________";
+}
+function fill(t,mode){return t.replace(/\{(\w+)\}/g,function(_,k){return val(k,mode)})}
+var TPL={
+ iv:{t:"DECLARAÇÃO DE SAÚDE E SEGURANÇA NO TRABALHO",b:"{razao}, inscrito(a) no CNPJ sob nº {cnpj}, localizada na Rua {rua}, nº {num}, bairro {bairro}, {cidade}/SC, por intermédio de seu representante legal, Sr.(a) {repNome}, {repNac}, {repEC}, {repProf}, portador(a) da cédula de identidade nº {repRG} e inscrito(a) no CPF sob nº {repCPF}, residente e domiciliado(a) na Rua {repRua}, nº {repNum}, bairro {repBairro}, {repCidade}/SC, DECLARA para os devidos fins que esta empresa cumpre com as normas referentes à saúde e à segurança no trabalho de seus empregados, a teor do que estabelece a Lei Estadual n.º 10.732/1998."},
+ v:{t:"DECLARAÇÃO SOBRE EMPREGO DE MENOR",b:"{razao}, inscrito(a) no CNPJ sob nº {cnpj}, localizada na Rua {rua}, nº {num}, bairro {bairro}, {cidade}/SC, por intermédio de seu representante legal, Sr.(a) {repNome}, {repNac}, {repEC}, {repProf}, portador(a) da cédula de identidade nº {repRG} e inscrito(a) no CPF sob nº {repCPF}, residente e domiciliado(a) na Rua {repRua}, nº {repNum}, bairro {repBairro}, {repCidade}/SC, DECLARA, para fins do disposto no inciso VI do art. 68, da Lei Federal nº 14.133 de 21 de junho de 2021, que não emprega menor de dezoito anos em trabalho noturno, perigoso ou insalubre e não emprega menor de dezesseis anos (art. 7º, inciso XXXIII da Constituição Federal).\n\nRessalva: Emprega menor, a partir de quatorze anos, na condição de aprendiz ( {aprendiz} )"},
+ vi:{t:"DECLARAÇÃO SOBRE TRABALHO ESCRAVO, INFANTIL E EXPLORAÇÃO DE MENORES",b:"A empresa {razao}, inscrita no CNPJ sob o nº {cnpj}, por meio de seu representante legal Senhor {repNome}, portador da Cédula de Identidade nº {repRG}, expedida pelo {repOrg}, inscrito no CPF sob o nº {repCPF}, para fins de prova junto à Secretaria de Estado da Administração Prisional (SAP), e em atendimento ao EDITAL DE CHAMAMENTO PÚBLICO Nº {edital}, para os efeitos e sob as penas da lei, em especial no contido no artigo 299 do Código Penal, DECLARO que esta instituição não pratica ou aceita a exploração de trabalho escravo ou degradante, a exploração sexual de menores e a exploração de mão de obra infantil e adolescente."},
+ vii:{t:"DECLARAÇÃO DE CONSULTA AO MUNICÍPIO (PERMISSÃO DE ATIVIDADES ECONÔMICAS DA PPTC)",b:"Declaramos para fins de participação do Edital Público de Seleção nº {edital}, que a empresa proponente {razao}, CNPJ {cnpj}, na figura de seu representante, senhor(a) {repNome}, CPF {repCPF}, esteve junto aos órgãos municipais competentes e obteve a devida consulta atestando que as atividades a serem desenvolvidas no estabelecimento prisional, conforme a sua Proposta de Plano de Trabalho, são permitidas no zoneamento do município onde se encontra o estabelecimento penal, isentando o PARCEIRO PÚBLICO ESTADUAL de quaisquer ônus ou responsabilidades."}
+};
+var KT=[["forms","Respostas do formulário"],["iv","Saúde e segurança"],["v","Menor"],["vi","Trabalho escravo e infantil"],["vii","Consulta ao município"],["q6","Quadro de máquinas"],["ovl","Overleaf e pacote"]];
+var kTab="forms";
+function declBody(k,mode){
+  var b=TPL[k].b.replace("{aprendiz}",C.aprendiz?"X":" ");return fill(b,mode);
+}
+function signHtml(){return '<div class="sig">'+val("cidade","html")+'/SC, '+today()+'.<br><br>_______________________________________<br>'+val("repNome","html")+'<br>Representante legal, '+val("razao","html")+'</div>'}
+function signPlain(){return val("cidade","plain")+"/SC, "+today()+".\n\n_______________________________________\n"+val("repNome","plain")+"\nRepresentante legal, "+val("razao","plain")}
+function q6rows(){return eqs.map(function(e){return [e.n,e.kw,e.q,(e.kw*e.q)]})}
+function q6extras(mode){
+  var m3=(CALC.cd/1000).toLocaleString("pt-BR",{maximumFractionDigits:2});
+  return [["Carga instalada (kVA)",f2(CALC.s)],["Demanda prevista (kVA)",f2(CALC.d)],["kVA por posto",f2(CALC.kp)],["Água (m³/dia)",m3],["Resíduos e destino",val("residuos",mode)],["Responsável técnico",val("rtNome",mode)+" · "+val("rtReg",mode)]];
+}
+function q6html(){
+  var h='<h4>QUADRO DE MÁQUINAS, ENERGIA, ÁGUA E RESÍDUOS</h4><div class="scroll"><table><thead><tr><th>Máquina ou equipamento</th><th>Potência nominal (kW)</th><th>Quantidade</th><th>Potência total (kW)</th></tr></thead><tbody>';
+  q6rows().forEach(function(r){h+='<tr><td>'+esc(r[0])+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td>'+r[3].toFixed(2)+'</td></tr>'});
+  h+='</tbody></table></div><br><table><tbody>';
+  q6extras("html").forEach(function(r){h+='<tr><td><b>'+r[0]+'</b></td><td>'+r[1]+'</td></tr>'});
+  return h+'</tbody></table><p style="font-size:13px">Tabela de apoio com os campos do quadro de máquinas do PPTC. Transcreva para o modelo oficial do PPTC.</p>';
+}
+function q6plain(){
+  var s="QUADRO 6 - MAQUINAS, ENERGIA, AGUA E RESIDUOS\nMaquina | kW nominal | Quantidade | Potencia total (kW)\n";
+  q6rows().forEach(function(r){s+=r.map(function(x,i){return i===3?x.toFixed(2):x}).join(" | ")+"\n"});
+  q6extras("plain").forEach(function(r){s+=r[0]+": "+r[1]+"\n"});return s;
+}
+function texDoc(){
+  var e=curEd()||{};var s="\\documentclass[12pt]{article}\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage[brazil]{babel}\n\\usepackage[a4paper,margin=2.5cm]{geometry}\n\\usepackage{array}\n\\setlength{\\parindent}{0pt}\\setlength{\\parskip}{8pt}\n\\begin{document}\n";
+  s+="\\begin{center}\\textbf{\\large Proposta: edital "+tx(edNum())+"}\\\\"+tx(e.un||"")+"\\end{center}\n\\textit{Rascunho gerado pelo Guia do Empresário. Conferir com os modelos do edital 002/2026 antes da assinatura.}\n\n";
+  s+="\\section*{Dados da proposta}\n\\begin{tabular}{@{}p{5cm}p{9cm}@{}}\n";
+  [["razao","Empresa"],["cnpj","CNPJ"],["email","E-mail"],["tel","Telefone"],["repNome","Responsável"],["item","Item pretendido"],["vagas","Vagas"],["atividade","Atividade"]].forEach(function(p){s+="\\textbf{"+p[1]+"} & "+val(p[0],"tex")+" \\\\\n"});
+  s+="\\end{tabular}\n";
+  ["iv","v","vi","vii"].forEach(function(k){
+    s+="\n\\newpage\n\\begin{center}\\textbf{"+tx(TPL[k].t)+"}\\end{center}\n"+declBody(k,"tex").replace(/\n\n/g,"\n\n")+"\n\n\\vspace{1.5cm}\n\\begin{center}"+val("cidade","tex")+"/SC, "+tx(today())+".\\\\[1.2cm]\\rule{8cm}{0.4pt}\\\\"+val("repNome","tex")+"\\\\Representante legal, "+val("razao","tex")+"\\end{center}\n";
+  });
+  s+="\n\\newpage\n\\begin{center}\\textbf{QUADRO 6 -- M\\'AQUINAS, ENERGIA, \\'AGUA E RES\\'IDUOS}\\end{center}\n\\begin{tabular}{|p{6cm}|r|r|r|}\\hline\nM\\'aquina & kW nominal & Qtde & Total (kW) \\\\\\hline\n";
+  q6rows().forEach(function(r){s+=tx(r[0])+" & "+r[1]+" & "+r[2]+" & "+r[3].toFixed(2)+" \\\\\\hline\n"});
+  s+="\\end{tabular}\n\n";
+  q6extras("tex").forEach(function(r){s+="\\textbf{"+tx(r[0])+":} "+(/Resíduos|Responsável/.test(r[0])?r[1]:tx(r[1]))+"\\\\\n"});
+  return s+"\\end{document}\n";
+}
+function htmlDoc(){
+  var h='<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><title>Kit de inscrição</title><style>body{font:15px/1.7 "Times New Roman",serif;max-width:760px;margin:30px auto;color:#111}h2{text-align:center;font-size:16px}section{page-break-after:always;margin-bottom:40px;white-space:pre-wrap}table{border-collapse:collapse}td,th{border:1px solid #888;padding:4px 8px}.s{text-align:center;margin-top:36px}mark{background:#fff0a8}</style></head><body>';
+  ["iv","v","vi","vii"].forEach(function(k){h+='<section><h2>'+esc(TPL[k].t)+'</h2>'+declBody(k,"html")+signHtml()+'</section>'});
+  return h+'<section>'+q6html()+'</section></body></html>';
+}
+function kitFiles(k){
+  if(TPL[k])return {name:k.toUpperCase()+"-preenchido.txt",text:TPL[k].t+"\n\n"+declBody(k,"plain")+"\n\n"+signPlain()};
+  if(k==="q6")return {name:"quadro6.txt",text:q6plain()};
+}
+function renderKit(){
+  var tabs=$("kTabs"),body=$("kBody");if(!tabs)return;
+  var ext=curEd()&&curEd().reg==="Externo";
+  tabs.innerHTML="";
+  KT.forEach(function(t){var b=el("button",null,esc(t[1]));b.setAttribute("role","tab");b.setAttribute("aria-selected",kTab===t[0]);b.onclick=function(){kTab=t[0];renderKit()};tabs.appendChild(b)});
+  body.innerHTML="";
+  var e=curEd()||{};
+  if(kTab==="forms"){
+    var rows=[["E-mail",C.email],["Nome da empresa",C.razao],["CNPJ",C.cnpj],["Responsável pela proposta",C.repNome],["Item do edital pretendido",C.item],["Número de vagas",C.vagas]];
+    var h='<p>Respostas para o formulário do edital <b>'+esc(edNum())+'</b>. Os campos abaixo seguem o formulário do Edital 039/2025 (e-mail, empresa, CNPJ, responsável, item e vagas). Conferir se o formulário vigente solicita os mesmos dados. Copiar cada resposta e colar no campo correspondente.</p>';
+    rows.forEach(function(r,i){h+='<div class="frow"><b>'+r[0]+'</b><span class="'+(r[1]?"":"miss")+'">'+(r[1]?esc(r[1]):"Informar na página Dados da empresa")+'</span><button class="btn ghost sm" data-c="'+i+'"'+(r[1]?"":" disabled")+'>Copiar</button></div>'});
+    h+='<p style="margin-top:14px"><b>Página 2: anexos</b>. Situação dos documentos obrigatórios:</p><ul>';
+    DOCS.forEach(function(d,i){if(d[0]==="ob")h+='<li>'+(ck[i]?"✓ ":"Pendente: ")+esc(d[1])+'</li>'});
+    h+='</ul>';
+    body.innerHTML=h;
+    if(e.forms){var a=el("a","btn go","Acessar o formulário de inscrição");a.href=e.forms;a.target="_blank";a.rel="noopener";body.appendChild(a)}
+    body.appendChild(el("p",null,'<small style="color:var(--muted)">O Google Forms não admite preenchimento automático sem os códigos dos campos de cada formulário. Caso a SEJURI disponibilize o link pré-preenchido, o botão acima poderá abrir o formulário já com estes dados.</small>'));
+    body.querySelectorAll("[data-c]").forEach(function(b){b.onclick=function(){copyText(rows[+b.dataset.c][1],b)}});
+    return;
+  }
+  if(ext&&TPL[kTab]){body.innerHTML='<div class="note warn">Utilizar o modelo do próprio edital.</div>';return}
+  if(TPL[kTab]){
+    var k=kTab;
+    if(k==="vii")body.appendChild(el("div","note warn","Esta declaração somente deve ser gerada e assinada após a consulta de zoneamento na prefeitura, pois atesta que a consulta foi realizada. Alguns editais de 2025 exigiam também a assinatura de policial penal da unidade: conferir no edital 002/2026."));
+    var p=el("div","paper");p.innerHTML='<h4>'+esc(TPL[k].t)+'</h4>'+declBody(k,"html")+signHtml();body.appendChild(p);
+    body.appendChild(el("p",null,'<small style="color:var(--muted)">Os campos em amarelo estão sem preenchimento: completar na página Dados da empresa. Texto baseado nos modelos do Edital 039/2025. Antes da assinatura, conferir com o arquivo “Declarações” do edital 002/2026'+(k==="v"?'. O inciso do art. 68 não consta do PDF do edital; adotou-se o inciso VI da Lei 14.133/2021, a ser conferido no modelo oficial.':'.')+'</small>'));
+    var f=kitFiles(k),bc=el("button","btn","Copiar texto"),bs=el("button","btn ghost","Salvar como .txt");
+    bc.onclick=function(){copyText(f.text,bc)};bs.onclick=function(){saveFile(f.name,kitFiles(k).text,bs)};
+    body.appendChild(bc);body.appendChild(bs);return;
+  }
+  if(kTab==="q6"){
+    var p2=el("div","paper");p2.innerHTML=q6html();body.appendChild(p2);
+    var c2=el("button","btn","Copiar texto"),s2=el("button","btn ghost","Salvar como .txt");
+    c2.onclick=function(){copyText(q6plain(),c2)};s2.onclick=function(){saveFile("quadro6.txt",q6plain(),s2)};
+    body.appendChild(c2);body.appendChild(s2);return;
+  }
+  if(kTab==="ovl"){
+    var tex=texDoc();
+    body.innerHTML='<p>Arquivo LaTeX com os dados da proposta, as declarações e o quadro de máquinas, para edição e geração de PDF no Overleaf.</p>';
+    var a2=el("a","btn go","Abrir no Overleaf");var u="https://www.overleaf.com/docs?snip_name=main.tex&snip="+encodeURIComponent(tex);
+    if(u.length<7500){a2.href=u;a2.target="_blank";a2.rel="noopener"}else{a2.href="https://www.overleaf.com/project";a2.target="_blank";a2.textContent="Acessar o Overleaf (arquivo extenso: utilizar a opção Copiar)"}
+    body.appendChild(a2);
+    var c3=el("button","btn","Copiar LaTeX"),s3=el("button","btn ghost","Salvar LaTeX (.txt)"),s4=el("button","btn ghost","Salvar pacote em HTML (para impressão em PDF)");
+    c3.onclick=function(){copyText(tex,c3)};s3.onclick=function(){saveFile("main-tex.txt",tex,s3)};s4.onclick=function(){saveFile("kit-inscricao.html",htmlDoc(),s4)};
+    body.appendChild(c3);body.appendChild(s3);body.appendChild(s4);
+    body.appendChild(el("p",null,'<small style="color:var(--muted)">Caso o botão não abra o projeto, copiar o LaTeX e, no Overleaf, criar um projeto em branco e colar o conteúdo no arquivo main.tex. Ao salvar em .txt, alterar a extensão para .tex.</small>'));
+    var pre=el("pre","tex");pre.textContent=tex;body.appendChild(pre);
+  }
+}
+
+/* ---------- passo 7: pontos e prazos ---------- */
+function calcS(){
+  var v=Math.min(75,Math.max(0,+$("sV").value||0)),kp=faixa(+$("sK").value||0),s=(+$("sS").value||0)*4,d=$("sD").checked?20:0,e=Math.min(10,Math.max(0,+$("sE").value||0)),t=v+kp+s+d+e,o=$("sOut");
+  o.className="result "+(t>=100?"good":t>=70?"warn":"bad");
+  o.innerHTML='<span class="big">'+t+'</span> de 150 pontos<br><small>Vagas '+v+' · Energia '+kp+' · Selo '+s+' · DANC '+d+' · Egressos '+e+'</small>';
+  $("sBar").style.width=(t/150*100)+"%";
+}
+["sV","sK","sS","sD","sE"].forEach(function(id){$(id).oninput=calcS;$(id).onchange=calcS});
+function addBiz(d,n){var x=new Date(d.getTime()),s=n<0?-1:1,c=Math.abs(n);while(c>0){x.setDate(x.getDate()+s);var w=x.getDay();if(w!==0&&w!==6)c--}return x}
+function fmt(d){return d.toLocaleDateString("pt-BR",{weekday:"short",day:"2-digit",month:"2-digit",year:"numeric"})}
+function calcD(){
+  var a=$("dPub").value,b=$("dFim").value,o=$("dOut");
+  if(!a||!b){o.className="result";o.textContent="Informar as duas datas. O cálculo considera sábados e domingos, mas não feriados.";return}
+  var pub=new Date(a+"T12:00:00"),fim=new Date(b+"T12:00:00");
+  if(fim<pub){o.className="result bad";o.textContent="O último dia da proposta é anterior à publicação.";return}
+  o.className="result good";
+  o.innerHTML='<b>Impugnação do edital:</b> até '+fmt(addBiz(pub,5))+' (5 dias úteis da publicação)<br><b>Pedido de esclarecimento:</b> até '+fmt(addBiz(fim,-7))+' (7 dias úteis antes do fim)<br><b>Visita técnica:</b> solicitar o agendamento até '+fmt(addBiz(fim,-3))+' (3 dias úteis de antecedência), realizando-a antes do encerramento<br><b>Envio da proposta:</b> até '+fmt(fim)+'<br><small>Verificar feriados e eventuais prorrogações no edital.</small>';
+}
+$("dPub").oninput=calcD;$("dFim").oninput=calcD;
+
+/* ---------- passo 8 ---------- */
+STEPS_I.slice(5).forEach(function(s){
+  var d=el("details","q");
+  d.innerHTML='<summary>'+esc(s.t)+' <span style="font-weight:400;color:var(--muted)">· '+esc(s.w)+'</span></summary><div><p>'+esc(s.what)+'</p><p><b>Prazos:</b> '+esc(s.time)+'</p><p><b>Quem:</b> '+esc(s.who)+'</p>'
+   +'<div class="cols"><div class="box err"><b>Erros recorrentes</b><ul>'+s.err.map(function(x){return"<li>"+esc(x)+"</li>"}).join("")+'</ul></div><div class="box chk"><b>Pontos de verificação</b><ul>'+s.chk.map(function(x){return"<li>"+esc(x)+"</li>"}).join("")+'</ul></div></div></div>';
+  $("after").appendChild(d);
+});
+
+/* ---------- ajuda ---------- */
+function renderFaq(q){var box=$("faqBox");box.innerHTML="";var n=0;q=norm(q||"");
+  FAQ.forEach(function(f){if(q&&norm(f[0]+" "+f[1]).indexOf(q)<0)return;n++;var d=el("details","q");d.innerHTML="<summary>"+esc(f[0])+"</summary><div>"+esc(f[1])+"</div>";if(q)d.open=true;box.appendChild(d)});
+  $("faqEmpty").style.display=n?"none":"block"}
+$("faqQ").oninput=function(){renderFaq(this.value)};renderFaq();
+function renderGl(q){var box=$("glBox");box.innerHTML="";var n=0;q=norm(q||"");
+  GL.forEach(function(g){if(q&&norm(g[0]+" "+g[1]).indexOf(q)<0)return;n++;box.appendChild(el("div",null,"<b>"+esc(g[0])+"</b>"+esc(g[1])))});
+  $("glEmpty").style.display=n?"none":"block"}
+$("glQ").oninput=function(){renderGl(this.value)};renderGl();
+CONF.forEach(function(c){$("confList").appendChild(el("li",null,"<b>"+esc(c[0])+".</b> "+esc(c[1])))});
+CONTATOS.forEach(function(c){$("contatos").appendChild(el("div",null,"<b>"+esc(c[0])+"</b>"+esc(c[1])))});
+
+/* ---------- assistente: IA e upload de edital ---------- */
+var AI=null,EDTEXT="",CHUNKS=[],hist=[];
+function manualCtx(){
+  var s="GUIA DO EMPRESARIO. EDITAL ABERTO: Chamamento Publico 002/SEJURI/GEFUN/2026 (parceria laboral interna, Fundos Rotativos Serrana e Oeste, 10 galpoes publicos e maquinario do Projeto SAP Textil, propostas 19/11/2026 a 18/12/2026, formulario https://forms.gle/BYRJNw5ao6Md2rgg6). Nao ha edital externo aberto. As regras abaixo sao de REFERENCIA dos editais internos de 2025 (base Edital 039/2025) e podem diferir no 002/2026:\n";
+  STEPS_I.forEach(function(x){s+="- "+x.t+". "+x.what+" Quem: "+x.who+" Prazo: "+x.time+" Erros: "+x.err.join("; ")+" Confira: "+x.chk.join("; ")+"\n"});
+  s+="Pontuacao (039): vagas 75, kVA por posto 25 (ate 0,3=25; 0,6=20; 0,9=15; 1,2=11; 1,5=6; acima=1), Selo Resgata 20 (4 cada), DANC 20, egressos 10; total 150. Agua: limite 70 L/dia por preso.\nFAQ:\n";
+  FAQ.forEach(function(f){s+="P: "+f[0]+" R: "+f[1]+"\n"});
+  s+="PONTOS A CONFIRMAR:\n";CONF.forEach(function(c){s+="- "+c[0]+": "+c[1]+"\n"});
+  s+="";
+  return s;
+}
+function chunkText(t){var out=[],n=1600;for(var i=0;i<t.length;i+=n-200)out.push(t.slice(i,i+n));return out}
+function pick(q,max){
+  if(!CHUNKS.length)return"";
+  var terms=norm(q).split(/[^a-z0-9]+/).filter(function(w){return w.length>3});
+  var sc=CHUNKS.map(function(c,i){var n=norm(c),s=0;terms.forEach(function(w){var m=n.split(w).length-1;s+=Math.min(m,5)});return[s,i]});
+  sc.sort(function(a,b){return b[0]-a[0]});
+  return sc.slice(0,max).filter(function(x){return x[0]>0}).sort(function(a,b){return a[1]-b[1]}).map(function(x){return CHUNKS[x[1]]}).join("\n---\n");
+}
+async function ask(prompt,out,opts){
+  if(!AI){out.textContent="Assistente indisponível nesta visualização.";return null}
+  out.style.display="block";out.textContent="Processando...";
+  try{
+    var r=await AI(prompt,{cache:false,onText:function(x){out.textContent=x.text||"Processando..."}});
+    out.textContent=r.text;return r.text;
+  }catch(e){
+    out.textContent=e&&e.code==="rate_limited"?"Número excessivo de solicitações. Aguardar um minuto e tentar novamente.":e&&e.code==="not_granted"?"Permissão negada para o uso do assistente.":"Não foi possível responder neste momento. Tentar novamente.";
+    return null;
+  }
+}
+var SYS="Você é o assistente do Guia do Empresário (edital aberto: Chamamento Público 002/SEJURI/GEFUN/2026), material de apoio para empresas que querem se inscrever em editais de parceria laboral no sistema prisional de Santa Catarina. Responda em português do Brasil, em linguagem formal, profissional e objetiva, na terceira pessoa ou na forma impessoal. Use somente o GUIA e os TRECHOS DO EDITAL abaixo. Quando a informação vier do edital enviado, diga o item ou a página se constar no trecho. Se a informação não estiver no material, diga que não encontrou e indique a GEFUN (gefun@sejuri.sc.gov.br). Nunca invente prazos, valores ou números. Lembre quando for relevante que vale o edital, e que o guia não tem valor jurídico.\n\n";
+function addMsg(t,c){var m=el("div","msg "+c);m.textContent=t;$("chat").appendChild(m);$("chat").scrollTop=1e9;return m}
+$("chatGo").onclick=async function(){
+  var q=$("chatQ").value.trim();if(!q)return;$("chatQ").value="";
+  addMsg(q,"u");var m=addMsg("Processando...","a");
+  var ctx=SYS+manualCtx()+(CHUNKS.length?"\n\nTRECHOS DO EDITAL ENVIADO:\n"+pick(q,8):"")+"\n\nCONVERSA ANTERIOR:\n"+hist.slice(-4).map(function(h){return h[0]+": "+h[1]}).join("\n")+"\n\nPERGUNTA: "+q;
+  if(!AI){m.textContent="Assistente indisponível nesta visualização.";return}
+  try{var r=await AI(ctx,{cache:false,onText:function(x){m.textContent=x.text||"Processando..."}});m.textContent=r.text;hist.push(["Pergunta",q],["Resposta",r.text.slice(0,600)])}
+  catch(e){m.textContent=e&&e.code==="rate_limited"?"Número excessivo de solicitações. Aguardar um minuto e tentar novamente.":"Não foi possível responder neste momento. Tentar novamente."}
+};
+$("chatQ").onkeydown=function(e){if(e.key==="Enter")$("chatGo").click()};
+
+/* upload */
+function loadPdfJs(){
+  return new Promise(function(res,rej){
+    if(window.pdfjsLib)return res(window.pdfjsLib);
+    var s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+    s.onload=function(){try{window.pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"}catch(e){}res(window.pdfjsLib)};
+    s.onerror=function(){rej(new Error("pdfjs"))};document.head.appendChild(s);
+  });
+}
+async function readFile(f){
+  $("upStat").textContent="Lendo "+f.name+"...";
+  var text="";
+  try{
+    if(/\.pdf$/i.test(f.name)||f.type==="application/pdf"){
+      var lib=await loadPdfJs(),buf=await f.arrayBuffer(),pdf=await lib.getDocument({data:buf}).promise,n=Math.min(pdf.numPages,300);
+      for(var i=1;i<=n;i++){var pg=await pdf.getPage(i),tc=await pg.getTextContent();text+="\n[p."+i+"] "+tc.items.map(function(x){return x.str}).join(" ");if(i%10===0)$("upStat").textContent="Lendo "+f.name+": página "+i+" de "+n}
+    }else{text=await f.text()}
+  }catch(e){$("upStat").innerHTML='Não foi possível ler o arquivo. Se for PDF digitalizado (imagem), utilizar versão com texto selecionável ou enviar o texto em arquivo .txt.';return}
+  if(text.replace(/\s/g,"").length<500){$("upStat").textContent="O arquivo contém pouco texto. Provavelmente trata-se de PDF digitalizado: utilizar versão com texto selecionável.";return}
+  EDTEXT=text;CHUNKS=chunkText(text);
+  var num=(text.match(/EDITAL[^\n]{0,120}?N[º°o]\.?\s*([0-9]{1,4}\s*\/\s*20[0-9]{2})/i)||[])[1],
+      link=(text.match(/https?:\/\/forms\.gle\/[A-Za-z0-9_-]+/)||[])[0];
+  var is002=/002\s*\/\s*2026/.test(num||"")||/128410/.test(text.slice(0,5000));
+  $("upStat").innerHTML="Arquivo lido: "+CHUNKS.length+" trechos. Número do edital: <b>"+esc(num||"não identificado")+"</b>. Link do formulário: <b>"+esc(link||"não identificado")+"</b>. "+(is002?"Trata-se do edital 002/2026.":"<b>Atenção:</b> o arquivo não aparenta ser o edital 002/2026, atualmente em aberto.");
+  $("upActions").style.display=AI?"block":"none";
+}
+$("upl").onchange=function(){if(this.files[0])readFile(this.files[0])};
+var dz=$("drop");["dragenter","dragover"].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.add("over")})});
+["dragleave","drop"].forEach(function(ev){dz.addEventListener(ev,function(e){e.preventDefault();dz.classList.remove("over")})});
+dz.addEventListener("drop",function(e){var f=e.dataTransfer.files[0];if(f)readFile(f)});
+
+$("bSum").onclick=async function(){
+  var q="vagas minimo maximo espaco metros vigencia prazo proposta pontuacao documentos habilitacao visita pagamento egressos energia agua";
+  var p=SYS+"TAREFA: elabore um resumo formal do EDITAL ENVIADO para empresa interessada em se inscrever. Apresente, em tópicos curtos: unidade e número do edital; espaço (m², edificado ou a edificar); vagas mínimas e máximas; vigência; prazo de envio da proposta e link do formulário; critérios de pontuação; documentos exigidos; regras de pagamento e jornada; exigências de energia e água; principais causas de eliminação. Cite o item do edital entre parênteses quando constar. Se alguma informação não constar dos trechos, registre 'não localizado'.\n\nTRECHOS DO EDITAL ENVIADO:\n"+pick(q,16);
+  await ask(p,$("aiOut"));
+};
+$("bDiff").onclick=async function(){
+  var q="prazo dias uteis impugnacao esclarecimento proposta avaliacao recurso homologacao assinatura vigencia vagas pontuacao pontos kva agua 70 litros pagamento salario minimo jornada egressos documentos habilitacao visita GETED habite-se DANC PGRS";
+  var p=SYS+"TAREFA: compare o GUIA com o EDITAL ENVIADO. Liste apenas as diferenças com evidência nos trechos, em formato: 'Item | Conteúdo do guia | Conteúdo do edital | Localização no edital'. Em seguida, proponha em uma frase a correção do guia para cada diferença. Se não houver diferenças comprováveis, diga isso. Não liste diferenças por suposição.\n\nTRECHOS DO EDITAL ENVIADO:\n"+pick(q,20);
+  await ask(p,$("aiOut"));
+};
+var lastFix="";
+$("fixGo").onclick=async function(){
+  var t=$("fixTxt").value.trim();if(!t){$("fixTxt").focus();return}
+  var p="Redija uma mensagem breve, formal e cordial, em português, dirigida ao responsável pela manutenção do Guia do Empresário (material de apoio da CTRAB/SC), solicitando a correção descrita abaixo. Inclua: o que parece errado ou desatualizado, a informação correta segundo quem escreveu, e onde conferir (item do edital, se informado). Não invente fatos. Texto sugerido pelo usuário: "+t;
+  var out=await ask(p,$("fixOut"));if(out){lastFix=out;$("fixCopy").style.display="inline-block"}
+};
+$("fixCopy").onclick=function(){copyText(lastFix,this)};
+
+/* ---------- inicialização ---------- */
+renderDocs();renderEq();showEd();calcK();calcA();calcS();calcD();renderKit();route();
+(async function(){
+  try{
+    if(window.claude&&claude.use){
+      AI=await claude.use("sample");
+      DL=await claude.use("downloads");
+    }
+  }catch(e){}
+  if(!AI){$("aiOff").style.display="block";["bSum","bDiff","chatGo","fixGo"].forEach(function(id){$(id).disabled=true})}
+  renderKit();
+})();
+
+/* ---------- conta e memória do preenchimento ---------- */
+var ACC=(function(){
+  var enc=new TextEncoder(),dec=new TextDecoder();
+  var S={id:null,key:null,salt:null,name:"",email:"",saved:0};
+  var timer=null,cloud=null,imported=null,mode="in",A={applying:false};
+  function b64(buf){var a=new Uint8Array(buf),s="";for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s)}
+  function unb64(s){var b=atob(s),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
+  function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(x){return("0"+x.toString(16)).slice(-2)}).join("")}
+  function ok(){return !!(window.crypto&&crypto.subtle&&window.TextEncoder)}
+  function idOf(email){return crypto.subtle.digest("SHA-256",enc.encode("gde1|"+email)).then(function(h){return hex(h).slice(0,32)})}
+  function derive(pw,salt){return crypto.subtle.importKey("raw",enc.encode(pw),"PBKDF2",false,["deriveKey"]).then(function(k){return crypto.subtle.deriveKey({name:"PBKDF2",salt:salt,iterations:200000,hash:"SHA-256"},k,{name:"AES-GCM",length:256},true,["encrypt","decrypt"])})}
+  function seal(key,obj){var iv=crypto.getRandomValues(new Uint8Array(12));return crypto.subtle.encrypt({name:"AES-GCM",iv:iv},key,enc.encode(JSON.stringify(obj))).then(function(ct){return{iv:b64(iv),ct:b64(ct)}})}
+  function open(key,rec){return crypto.subtle.decrypt({name:"AES-GCM",iv:unb64(rec.iv)},key,unb64(rec.ct)).then(function(p){return JSON.parse(dec.decode(p))})}
+  function lget(id){try{var v=localStorage.getItem("gde-acc-"+id);return v?JSON.parse(v):null}catch(e){return null}}
+  function lset(id,rec){try{localStorage.setItem("gde-acc-"+id,JSON.stringify(rec));return true}catch(e){return false}}
+  function hasLocal(){try{for(var i=0;i<localStorage.length;i++){if(String(localStorage.key(i)).indexOf("gde-acc-")===0)return true}}catch(e){}return false}
+  function email(s){return String(s||"").trim().toLowerCase()}
+  function hhmm(t){var d=new Date(t);return("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)}
+
+  /* nuvem (opcional): somente quando o visitante está conectado a uma conta Claude */
+  function withTimeout(p,ms){return Promise.race([p,new Promise(function(_,rej){setTimeout(function(){rej(new Error("tempo"))},ms)})])}
+  function cref(id){return cloud.db.collection("data/users/"+cloud.uid).doc("conta-"+id)}
+  function cget(id){
+    if(!cloud)return Promise.resolve(null);
+    return withTimeout(Promise.resolve(cref(id).get()),8000).then(function(s){
+      if(!s)return null;
+      var ex=typeof s.exists==="function"?s.exists():s.exists;if(ex===false)return null;
+      var d=typeof s.data==="function"?s.data():s;
+      if(d&&d.ct&&d.iv&&d.salt)return d;if(d&&d.data&&d.data.ct)return d.data;return null;
+    }).catch(function(){return null});
+  }
+  function cset(id,rec){
+    if(!cloud)return Promise.resolve(false);
+    return withTimeout(Promise.resolve(cref(id).set(rec)),8000).then(function(){return true}).catch(function(){return false});
+  }
+  try{
+    if(window.claude&&claude.use){
+      Promise.all([claude.use("db"),claude.use("user")]).then(function(r){
+        if(r[0]&&r[1]&&typeof r[1].id==="function"){return Promise.resolve(r[1].id()).then(function(uid){if(uid){cloud={db:r[0],uid:uid};ui()}})}
+      }).catch(function(){});
+    }
+  }catch(e){}
+
+  function snapshot(){return{name:S.name,email:S.email,c:C,docs:ck,eq:eqs,page:window.CURPAGE||"dados",t:Date.now()}}
+  function persist(){
+    if(!S.key||!S.id)return Promise.resolve();
+    return seal(S.key,snapshot()).then(function(p){
+      var rec={v:1,salt:b64(S.salt),iv:p.iv,ct:p.ct,t:Date.now()};
+      var okL=lset(S.id,rec);S.saved=Date.now();ui(okL?"":"Não foi possível gravar neste navegador.");
+      cset(S.id,rec).then(function(okC){if(okC)ui()});
+      return rec;
+    }).catch(function(){ui("Falha ao salvar.")});
+  }
+  A.dirty=function(){if(A.applying||!S.key)return;clearTimeout(timer);ui("Salvando…");timer=setTimeout(persist,900)};
+  A.flush=function(){clearTimeout(timer);return persist()};
+
+  function defEq(){return[{n:"Máquina de costura industrial",kw:0.55,q:20},{n:"Iluminação e tomadas",kw:2,q:1}]}
+  function refresh(){
+    FIELDS.forEach(function(f){var i=$("f_"+f[1]);if(i)i.value=C[f[1]]||""});
+    $("fAprendiz").checked=!!C.aprendiz;prefill();renderDocs();renderEq();
+    if(C.vagas){$("kPostos").value=C.vagas;$("aPostos").value=C.vagas}
+    calcK();calcA();calcS();renderKit();
+  }
+  function applyState(st,goto){
+    A.applying=true;
+    try{
+      C=st.c||{};ck=st.docs||{};eqs=(st.eq&&st.eq.length)?st.eq:defEq();
+      save("gde-c",C);save("gde-docs",ck);save("gde-eq",eqs);
+      refresh();
+      if(goto){var pg=st.page&&$("p-"+st.page)?st.page:"dados";if(location.hash==="#"+pg)route();else location.hash="#"+pg}
+    }finally{A.applying=false}
+  }
+  function clearWork(){
+    A.applying=true;
+    try{["gde-c","gde-docs","gde-eq"].forEach(function(k){try{localStorage.removeItem(k)}catch(e){}});C={};ck={};eqs=defEq();refresh()}finally{A.applying=false}
+  }
+  function startSession(id,key,salt,st){
+    S.id=id;S.key=key;S.salt=salt;S.name=st.name||"";S.email=st.email||"";S.saved=st.t||0;
+    try{crypto.subtle.exportKey("raw",key).then(function(raw){sessionStorage.setItem("gde-sess",JSON.stringify({id:id,k:b64(raw),s:b64(salt),n:S.name,e:S.email,t:S.saved}))}).catch(function(){})}catch(e){}
+    ui();
+  }
+
+  /* ações */
+  function create(name,mail,pw,pw2){
+    mail=email(mail);name=String(name||"").trim();
+    if(!ok())return Promise.reject("Este navegador não oferece o recurso de criptografia necessário. Abrir o guia em um navegador atualizado.");
+    if(!name)return Promise.reject("Informar o nome.");
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail))return Promise.reject("Informar um e-mail válido.");
+    if(pw.length<8)return Promise.reject("A senha deve ter ao menos 8 caracteres.");
+    if(pw!==pw2)return Promise.reject("As senhas informadas não coincidem.");
+    return idOf(mail).then(function(id){
+      return cget(id).then(function(cr){
+        if(lget(id)||cr)return Promise.reject("Já existe conta com este e-mail. Utilizar a opção Entrar.");
+        var salt=crypto.getRandomValues(new Uint8Array(16));
+        return derive(pw,salt).then(function(key){startSession(id,key,salt,{name:name,email:mail,t:Date.now()});return persist()});
+      });
+    });
+  }
+  function login(mail,pw){
+    mail=email(mail);
+    if(!ok())return Promise.reject("Este navegador não oferece o recurso de criptografia necessário.");
+    if(!pw)return Promise.reject("Informar a senha.");
+    var p;
+    if(imported){p=Promise.resolve(imported)}
+    else{
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail))return Promise.reject("Informar um e-mail válido.");
+      p=idOf(mail).then(function(id){var r=lget(id);return r?r:cget(id)});
+    }
+    return p.then(function(rec){
+      if(!rec)return Promise.reject("Conta não encontrada neste navegador"+(cloud?" nem na nuvem.":". Para acessar a conta em outro dispositivo, importar o arquivo de backup."));
+      var salt=unb64(rec.salt);
+      return derive(pw,salt).then(function(key){
+        return open(key,rec).then(function(st){return idOf(st.email||mail).then(function(id){
+          lset(id,rec);startSession(id,key,salt,st);applyState(st,true);imported=null;
+          if(!cloud){}else cset(id,rec);
+        })},function(){return Promise.reject("Senha incorreta.")});
+      });
+    });
+  }
+  function logout(){
+    return A.flush().then(function(){
+      S.id=null;S.key=null;S.name="";S.email="";clearTimeout(timer);
+      try{sessionStorage.removeItem("gde-sess")}catch(e){}
+      clearWork();ui();location.hash="#inicio";
+    });
+  }
+  function backup(){
+    if(!S.id)return;
+    A.flush().then(function(rec){rec=rec||lget(S.id);if(rec)saveFile("guia-empresario-backup.txt",JSON.stringify(rec),$("accBackup"))});
+  }
+
+  /* interface */
+  function ui(msg){
+    var b=$("accBox"),n=$("accNote");if(!b)return;
+    var on=!!S.key,t=on?("Salvo às "+hhmm(S.saved||Date.now())+(cloud?" (neste navegador e na nuvem)":" (neste navegador)")):"";
+    b.innerHTML=on
+      ?'<div class="who"><b>'+esc(S.name||"Conta")+'</b><span>'+esc(S.email)+'</span></div><div class="st" aria-live="polite">'+esc(msg||t)+'</div><div class="ac"><button class="btn sm ghost" id="accBackup">Backup</button><button class="btn sm ghost" id="accOut">Sair</button></div>'
+      :'<button class="btn sm" id="accIn">Entrar ou criar conta</button><div class="st">Permite retomar o preenchimento depois.</div>';
+    if(on){$("accOut").onclick=function(){logout()};$("accBackup").onclick=backup}else{$("accIn").onclick=function(){openM(hasLocal()?"in":"up")}}
+    if(n){n.innerHTML=on
+      ?'<b>Conta ativa:</b> '+esc(S.name)+'. As alterações são salvas automaticamente. <span style="color:var(--muted)">'+esc(msg||t)+'</span>'
+      :'<b>Retomar depois.</b> Para continuar o preenchimento em outro momento, criar uma conta ou entrar. <button class="btn sm" id="accIn2" style="margin-left:8px">Entrar ou criar conta</button>';
+      var b2=$("accIn2");if(b2)b2.onclick=function(){openM(hasLocal()?"in":"up")}}
+  }
+  var lastFocus=null;
+  function openM(m){
+    mode=m;lastFocus=document.activeElement;var M=$("accModal");M.hidden=false;document.body.classList.add("modal-open");setM(m);
+    var f=M.querySelector("input:not([type=file])");if(f)setTimeout(function(){f.focus()},30);
+  }
+  function closeM(){$("accModal").hidden=true;document.body.classList.remove("modal-open");imported=null;if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+  function setM(m){
+    mode=m;var up=m==="up";
+    $("accTitle").textContent=up?"Criar conta":"Entrar";
+    $("tabIn").setAttribute("aria-selected",!up);$("tabUp").setAttribute("aria-selected",up);
+    $("accNameW").style.display=up?"":"none";$("accPw2W").style.display=up?"":"none";$("accImpW").style.display=up?"none":"";
+    $("accSubmit").textContent=up?"Criar conta":"Entrar";$("accMsg").textContent="";$("accMsg").className="result";
+    $("accPw").autocomplete=up?"new-password":"current-password";
+  }
+  function msg(t,good){var m=$("accMsg");m.textContent=t;m.className="result "+(good?"good":"bad")}
+  function wire(){
+    if(!$("accModal"))return;
+    $("tabIn").onclick=function(){setM("in")};$("tabUp").onclick=function(){setM("up")};
+    $("accClose").onclick=closeM;
+    $("accModal").addEventListener("click",function(e){if(e.target===$("accModal"))closeM()});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!$("accModal").hidden)closeM()});
+    $("accImp").onchange=function(){
+      var f=this.files&&this.files[0];if(!f)return;var r=new FileReader();
+      r.onload=function(){try{var j=JSON.parse(r.result);if(j&&j.ct&&j.iv&&j.salt){imported=j;msg("Backup carregado. Informar a senha da conta para concluir.",true)}else throw 0}catch(e){imported=null;msg("O arquivo selecionado não é um backup válido do guia.")}};
+      r.readAsText(f);
+    };
+    $("accForm").onsubmit=function(ev){
+      ev.preventDefault();var btn=$("accSubmit");btn.disabled=true;msg("Processando…",true);
+      var p=mode==="up"?create($("accName").value,$("accMail").value,$("accPw").value,$("accPw2").value):login($("accMail").value,$("accPw").value);
+      p.then(function(){closeM();$("accPw").value="";$("accPw2").value=""},function(e){msg(typeof e==="string"?e:"Não foi possível concluir. Tentar novamente.")}).then(function(){btn.disabled=false});
+    };
+  }
+  /* restaura sessão da mesma aba após recarregar */
+  function restore(){
+    try{
+      var s=JSON.parse(sessionStorage.getItem("gde-sess")||"null");if(!s||!ok())return;
+      crypto.subtle.importKey("raw",unb64(s.k),"AES-GCM",true,["encrypt","decrypt"]).then(function(key){S.id=s.id;S.key=key;S.salt=unb64(s.s);S.name=s.n||"";S.email=s.e||"";S.saved=s.t||0;ui()}).catch(function(){});
+    }catch(e){}
+  }
+  A.ui=ui;A.wire=wire;A.restore=restore;A.open=openM;
+  window.addEventListener("pagehide",function(){if(S.key){try{clearTimeout(timer);persist()}catch(e){}}});
+  return A;
+})();
+ACC.wire();ACC.ui();ACC.restore();
+</script>
+</body>
+</html>
